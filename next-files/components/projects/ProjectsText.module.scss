@@ -1,0 +1,93 @@
+.projectsTextContainer {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  background: none;
+  margin-bottom: 3rem;
+
+  p,
+  a {
+    font-family: "Source Serif Pro", sans-serif;
+    font-size: 1.125rem;
+    text-decoration: none;
+    background: transparent;
+    z-index: 1;
+  }
+
+  @media (min-width: 50em) {
+    gap: 2rem;
+    margin-bottom: 7rem;
+
+    p {
+      font-size: 1.728rem;
+    }
+  }
+}
+
+.header2 {
+  font-family: "Messapia Bold", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  background: none;
+  z-index: 1;
+
+  @media (min-width: 50em) {
+    font-size: 2rem;
+  }
+}
+
+.skillsListContainer {
+  z-index: 1;
+  margin-top: 1.7rem;
+  background: none;
+
+  p {
+    background: none;
+    font-size: 1.5rem;
+    font-family: "Satoshi Light", sans-serif;
+
+    @media (min-width: 50em) {
+      font-size: 2rem;
+    }
+  }
+}
+
+.skillsList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  padding: 0;
+  margin: 20px 0 0 0;
+  list-style: none;
+  background: none;
+
+  a {
+    position: relative;
+    text-decoration: none;
+    display: inline;
+    font-size: 1rem;
+    font-family: "Intel One Mono Medium", monospace;
+    z-index: 0;
+    width: fit-content;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    background-image: linear-gradient(
+      130deg,
+      var(--main-orange),
+      var(--main-red) 41.07%,
+      var(--main-cyan) 76.05%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    background-position: bottom;
+    border-radius: 0 0 2px 2px;
+    transition: background-size 0.17s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+      background-size: 100% 38%;
+    }
+
+    @media (min-width: 50em) {
+      font-size: 1.3rem;
+    }
+  }
+}

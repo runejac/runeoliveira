@@ -1,0 +1,35 @@
+.headerTag {
+  display: flex;
+  //position: sticky;
+  z-index: 7;
+  top: 0;
+  width: 100%;
+  -moz-box-align: center;
+  -moz-box-pack: justify;
+  background: none;
+
+  @media (min-width: 50em) {
+    height: 80px;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    -khtml-backdrop-filter: blur(7px);
+    -moz-backdrop-filter: blur(7px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.mainTag {
+  background: none;
+}
+
+.projectsAndAboutSection {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 0.5rem;
+  background: none;
+}
+
+.divContainer {
+  background: none;
+}

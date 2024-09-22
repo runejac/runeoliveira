@@ -1,0 +1,79 @@
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+* {
+  background: rgba(0, 0, 0, 0.28);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-weight: normal;
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+@font-face {
+  font-family: "Messapia Bold";
+  src: url("../../public/fonts/Messapia/Messapia-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Intel One Mono Medium";
+  src: url("../../public/fonts/Intel One Mono/IntelOneMono-Medium.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Satoshi Light";
+  src: url("../../public/fonts/Satoshi/Satoshi-Light.woff2") format("woff2");
+}
+
+:root {
+  // colors
+  --main-orange: #ff7a18;
+  --main-red: #af002d;
+  --main-cyan: #319197;
+
+  --yellow-background: #2c2c2c;
+  --selection: #1e1e1e;
+  --green-navbar-hover: #c5efdc;
+  --pink: #dd3988;
+  --pink-shadow: #791f4d;
+  --background: #dadada;
+  --brown: #cc8446;
+
+  --smokey-black: hsl(41, 100%, 3%);
+  --smokey-black-active: hsl(41, 100%, 3%);
+
+  --linkedin-color: #0a66c2;
+  --github-color: #f0f6fc;
+  --text-gray: #ffffff;
+  --text-light: #ececec;
+
+  --border-radius: 12px;
+  --border-radius-card-color: 8px;
+  --border-radius-modal: 10px;
+  --border-width: 3px;
+  --border-specs: var(--border-width) solid black;
+  --box-shadow: 8px 8px #000;
+  --box-shadow-pink: 8px 8px var(--pink-shadow);
+  --box-shadow-modal: 16px 16px #000;
+  --box-shadow-icon: 2px 2px #000;
+  --transition: transform 0.17s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0s;
+  --transition-navbar: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --sm: 14px;
+  --outline: 1px red solid;
+}
