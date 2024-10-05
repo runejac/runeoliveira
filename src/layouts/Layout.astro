@@ -1,0 +1,63 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+
+  <body>
+    <div class="background"></div>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+  main {
+    height: 100vh;
+    overflow-y: auto;
+  }
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: auto;
+    z-index: -1;
+    mix-blend-mode: darken;
+    background-color: #000000;
+    background-image: radial-gradient(at 50% 32%, hsla(203, 68%, 64%, 1) 0px, transparent 50%),
+      radial-gradient(at 19% 69%, hsla(223, 98%, 64%, 1) 0px, transparent 50%),
+      radial-gradient(at 51% 59%, hsla(354, 84%, 70%, 1) 0px, transparent 50%),
+      radial-gradient(at 97% 75%, hsla(348, 62%, 72%, 1) 0px, transparent 50%),
+      radial-gradient(at 49% 56%, hsla(283, 78%, 63%, 1) 0px, transparent 50%),
+      radial-gradient(at 15% 95%, hsla(330, 76%, 63%, 1) 0px, transparent 50%),
+      url("data:image/svg+xml, %3Csvg viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg' %3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='13' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+  }
+
+  .main-tag {
+    background: none;
+  }
+
+  .projects-and-about-section {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5rem;
+    background: none;
+  }
+
+  .div-container {
+    background: none;
+  }
+</style>

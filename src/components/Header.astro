@@ -1,8 +1,32 @@
 ---
-// TODO: add potential sidebar logic
-const sidebar = false;
-const showSidebar = () => {};
+import { Icon } from 'astro-icon/components'; // Ensure you have an icon library installed, e.g., astro-icon
 ---
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger') as HTMLElement;
+    const sidebar = document.querySelector('.sidebar-container') as HTMLElement;
+    const backgroundSidebar = document.querySelector('.background-sidebar') as HTMLElement;
+    const navMenuItems = document.querySelectorAll('.nav-menu-items a') as NodeListOf<HTMLElement>;
+    const menuIcon = document.querySelector('.menu-icon') as HTMLElement;
+    const chevronIcon = document.querySelector('.chevron-icon') as HTMLElement;
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('expanded');
+      backgroundSidebar.classList.toggle('visible');
+      document.body.classList.toggle('sidebar-open');
+      menuIcon.classList.toggle('hidden');
+      chevronIcon.classList.toggle('hidden');
+    }
+
+    hamburger.addEventListener('click', toggleSidebar);
+    backgroundSidebar.addEventListener('click', toggleSidebar);
+
+    navMenuItems.forEach((item) => {
+      item.addEventListener('click', toggleSidebar);
+    });
+  });
+</script>
 
 <header>
   <nav class="navbar-container">
@@ -21,12 +45,16 @@ const showSidebar = () => {};
       <a class="hit-me-up" href="#" aria-label="mail me section">contact</a>
     </li>
   </nav>
-  {sidebar && <div class="background-sidebar" aria-label="background sidebar exit from menu" />}
+  <div class="hamburger" aria-label="Toggle menu">
+    <Icon class="menu-icon visible" name="menu-order" width="40" height="40" />
+    <Icon class="chevron-icon hidden" name="chevron-right" width="40" height="40" />
+  </div>
+  <div class="background-sidebar" aria-label="Close menu"></div>
   <aside class="sidebar-container">
     <div class="navbar">
-      <!-- TODO: add close icon aria-label="close menu" class="menu-bars" -->
+      <!-- You can add a close icon here if needed -->
     </div>
-    <nav class={`nav-menu ${sidebar ? 'active' : ''}`}>
+    <nav class="nav-menu">
       <ul class="nav-menu-items">
         <li class="navbar-child">
           <a href="#about" data-astro-prefetch aria-label="about section">about</a>
@@ -40,15 +68,89 @@ const showSidebar = () => {};
         <li class="navbar-child">
           <a href="#" aria-label="mail me section">contact</a>
         </li>
-        <li class="navbar-toggle">
-          <!-- TODO: add open icon aria-label="open menu" class="menu-bars close" -->
-        </li>
       </ul>
     </nav>
   </aside>
 </header>
 
 <style>
+  .hamburger {
+    display: block;
+    position: fixed; /* Ensures it stays in place */
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+
+  .menu-icon,
+  .chevron-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+    opacity: 1;
+  }
+
+  /* Remove rotation from the hidden class */
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+    /* transform: rotate(180deg); */ /* Removed to fix rotation issue */
+  }
+
+  /* Apply rotation when visible */
+  .menu-icon.visible {
+    transform: rotate(90deg); /* No rotation when visible */
+  }
+
+  .chevron-icon.visible {
+    transform: rotate(0deg); /* No rotation when visible */
+  }
+
+  /* Optional: Add rotation when toggling */
+  /* You can customize these values for desired rotation effects */
+  .menu-icon.hidden {
+    transform: rotate(-90deg);
+  }
+
+  .chevron-icon.hidden {
+    transform: rotate(90deg);
+  }
+
+  header {
+    display: flex;
+    z-index: 7;
+    top: 0;
+    width: 100%;
+    -moz-box-align: center;
+    -moz-box-pack: justify;
+    background: none;
+
+    @media (min-width: 50em) {
+      height: 80px;
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      -khtml-backdrop-filter: blur(7px);
+      -moz-backdrop-filter: blur(7px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .hamburger {
+      /* Ensured hamburger container has a fixed size */
+      width: 40px;
+      height: 40px;
+
+      svg {
+        fill: var(--text-color);
+      }
+    }
+  }
+
   .navbar-container {
     display: none;
     width: 100%;
@@ -97,124 +199,91 @@ const showSidebar = () => {};
 
   .sidebar-container {
     display: flex;
-    position: sticky;
+    position: fixed;
     z-index: 10;
-    margin-top: 10px;
-    margin-right: 10px;
-    right: 0;
+    top: 0;
+    right: -70%;
+    width: 70%;
+    height: 100vh;
+    background-color: rgba(30, 30, 30, 0.95);
+    transition: right 350ms ease;
+    overflow-y: auto;
+
+    @media (min-width: 50em) {
+      display: none;
+    }
+
+    &.expanded {
+      right: 0;
+    }
   }
 
   .background-sidebar {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100vh;
     top: 0;
-    bottom: 0;
-    z-index: 9;
-    backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.56);
+    left: 0;
+    z-index: 8;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 350ms ease,
+      visibility 0s linear 350ms;
+  }
+
+  .background-sidebar.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 350ms ease;
   }
 
   .nav-menu {
-    visibility: hidden;
-    background-color: var(--background);
-    width: 100%;
-    height: 100vh;
+    padding: 2rem;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    transition: ease 350ms;
-
-    &.active {
-      width: 70%;
-      visibility: visible;
-      position: fixed;
-      right: 0;
-      transition: ease 350ms;
-      -webkit-transition: ease 350ms;
-    }
-  }
-
-  .navbar {
-    position: absolute;
-    display: flex;
-    width: 100%;
-    background: none;
-    justify-content: flex-end;
-  }
-
-  .menu-bars {
-    width: fit-content;
-    display: flex;
-    font-size: 2.5rem;
-    background: none !important;
-
-    path {
-      color: var(--text-light);
-    }
-
-    &.close {
-      position: relative;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, 100%);
-
-      path {
-        color: var(--yellow-background);
-      }
-    }
-  }
-
-  .navbar-toggle {
-    position: relative;
-    display: flex;
   }
 
   .nav-menu-items {
-    position: relative;
-    display: flex;
-    background-color: var(--background);
-    gap: 3rem;
-    width: 150px;
-    flex-direction: column;
-    justify-content: center;
-    transition: 350ms;
-
-    li,
-    a,
-    span {
-      text-decoration: none;
-      list-style: none;
-      color: var(--yellow-background);
-      font-size: 2rem;
-      background-color: var(--background);
-      border-radius: 5px;
-    }
-
-    a {
-      width: fit-content;
-    }
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
   }
 
   .navbar-child {
-    width: fit-content;
-    font-family: 'Messapia Bold', sans-serif;
-    display: flex;
-    align-items: center;
-    list-style: none;
-    height: 3rem;
+    margin-bottom: 1.5rem;
+  }
 
-    a {
-      font-size: 1.4rem;
-      text-transform: uppercase;
-    }
+  .navbar-child a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-child a:hover {
+    color: var(--accent-color);
   }
 
   @media (min-width: 50em) {
-    .sidebar-container {
+    .sidebar-container,
+    .background-sidebar,
+    .hamburger {
       display: none;
     }
+  }
+
+  /* Add this new style */
+  body.sidebar-open {
+    overflow: hidden;
+  }
+
+  /* Ensure the main content can scroll when the sidebar is open */
+  main {
+    height: 100vh;
+    overflow-y: auto;
   }
 </style>

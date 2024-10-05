@@ -1,0 +1,99 @@
+---
+import { getEntry } from 'astro:content';
+const { data } = await getEntry('about', 'about');
+---
+
+<section id={'about'} class="about-and-img-container">
+  <div class="about-me-container">
+    <h2>about</h2>
+    <p>{data.p1}</p>
+    <p>
+      {data.p2}
+      <a
+        href={'https://www.kristiania.no/studier/bachelor/informasjonsteknologi-frontend-og-mobilutvikling/'}
+        target={'_blank'}
+        aria-label={'open course link'}
+      >
+        <span>frontend and mobile development</span>
+      </a>
+      {data.p2a}
+    </p>
+    <p>{data.p3}</p>
+  </div>
+</section>
+
+<style>
+  .about-and-img-container {
+    position: relative;
+    background: none;
+    z-index: 1;
+    margin-bottom: 5rem;
+
+    @media (min-width: 50em) {
+      display: flex;
+      flex-direction: row;
+      background: none;
+    }
+  }
+
+  .about-me-container {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    background: none;
+
+    h2 {
+      font-size: 1.7rem;
+      font-family: 'Messapia Bold', sans-serif;
+      text-transform: uppercase;
+      background: none;
+    }
+
+    span {
+      background: none;
+    }
+
+    p,
+    a {
+      font-family: 'Satoshi Light', sans-serif;
+      font-size: 1.35rem;
+      background: none;
+      text-decoration: none;
+    }
+
+    a {
+      position: relative;
+      text-decoration: none;
+      display: inline;
+      z-index: 0;
+      border-bottom: 2px solid transparent;
+      background-image: linear-gradient(
+        130deg,
+        var(--main-orange),
+        var(--main-red) 41.07%,
+        var(--main-cyan) 76.05%
+      );
+      background-repeat: no-repeat;
+      background-size: 100% 2px;
+      background-position: bottom;
+      border-radius: 0 0 2px 2px;
+      transition: background-size 0.17s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      &:hover {
+        background-size: 100% 38%;
+      }
+    }
+
+    @media (min-width: 50em) {
+      position: relative;
+
+      h2 {
+        font-size: 2rem;
+      }
+      p,
+      a {
+        font-size: 2rem;
+      }
+    }
+  }
+</style>
