@@ -1,58 +1,51 @@
 ---
-import { getEntry } from 'astro:content';
-const { data } = await getEntry('about', 'about');
+
 ---
 
-<section id={'about'} class="about-and-img-container">
-  <div class="about-me-container">
-    <h2>about</h2>
-    <p>{data.p1}</p>
-    <p>
-      {data.p2}
-      <a
-        href={'https://www.kristiania.no/studier/bachelor/informasjonsteknologi-frontend-og-mobilutvikling/'}
-        target={'_blank'}
-        aria-label={'open course link'}
-      >
-        <span>frontend and mobile development</span>
-      </a>
-      {data.p2a}
-    </p>
-    <p>{data.p3}</p>
-  </div>
+<section id={'about'} class="about-me-container">
+  <p>
+    I have always been fascinated by technology. I built computers as a kid, which later led me to a
+    job in an e-commerce company specializing in hardware. My interest in computer components
+    naturally took me to a procurement role for a leading Scandinavian retailer, where I could blend
+    my passion and expertise.
+  </p>
+  <p>
+    At the age of 29, I transitioned to software and pursued a bachelor's degree in information
+    technology in Oslo, specializing in {' '}
+    <a
+      href={'https://www.kristiania.no/studier/bachelor/informasjonsteknologi-frontend-og-mobilutvikling/'}
+      target={'_blank'}
+      aria-label={'open course link'}
+    >
+      <span>frontend and mobile development</span>
+    </a>
+    I found satisfaction in the user-centric aspect of frontend work, writing code to create engaging
+    and intuitive interfaces is my goal. Exploring the nuances of server and client technologies, I am
+    engaged in enhancing user experiences to their utmost potential. I am intrigued by how various technologies
+    interconnect behind the scenes, communicating with each other, to seamlessly fulfill user needs.
+  </p>
+  <p>
+    When I'm not programming, you can find me casting a fly line by the coast 🎣 exploring virtual
+    worlds 🎮 strategizing over a board game 🎲 or carving through the snow on my skis⛷️.
+  </p>
 </section>
 
 <style>
-  .about-and-img-container {
+  .about-me-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 0 auto;
+    max-width: 1100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     position: relative;
     background: none;
     z-index: 1;
     margin-bottom: 5rem;
-
-    @media (min-width: 50em) {
-      display: flex;
-      flex-direction: row;
-      background: none;
-    }
-  }
-
-  .about-me-container {
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
-    background: none;
-
-    h2 {
-      font-size: 1.7rem;
-      font-family: 'Messapia Bold', sans-serif;
-      text-transform: uppercase;
-      background: none;
-    }
-
-    span {
-      background: none;
-    }
-
     p,
     a {
       font-family: 'Satoshi Light', sans-serif;
@@ -85,8 +78,8 @@ const { data } = await getEntry('about', 'about');
     }
 
     @media (min-width: 50em) {
-      position: relative;
-
+      padding-left: 4rem;
+      padding-right: 4rem;
       h2 {
         font-size: 2rem;
       }

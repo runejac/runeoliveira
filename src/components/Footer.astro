@@ -1,7 +1,11 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
 <footer class="footer-container">
   <div class="footer-content">
     <div class="social-media-container">
-      <ul class="footer-ul">
+      <ul>
         <li>
           <a
             href="https://www.linkedin.com/in/rune-daniel-jacobsen-oliveira/"
@@ -9,7 +13,7 @@
             rel="noopener noreferrer"
             aria-label="open linkedin profile"
           >
-            <!-- LinkedIn icon class="icon-link & linkedin" -->
+            <Icon name="brand-linkedin" class="icon-link" width="40" height="40" />
           </a>
         </li>
         <li>
@@ -19,7 +23,7 @@
             rel="noopener noreferrer"
             aria-label="open github profile"
           >
-            <!-- GitHub icon class="icon-link & github-link" -->
+            <Icon name="brand-github" class="icon-link" width="40" height="40" />
           </a>
         </li>
       </ul>
@@ -36,7 +40,7 @@
     </div>
     <div class="copyright-container">
       <p>
-        © {new Date().getFullYear()} - Rune Oliveira
+        &copy; {new Date().getFullYear()} - Rune Oliveira
       </p>
     </div>
   </div>
@@ -74,11 +78,12 @@
     width: fit-content;
   }
 
-  .footer-ul {
+  ul {
     display: flex;
     list-style: none;
     gap: 2rem;
     background: none;
+    padding: 0;
 
     li,
     a {
@@ -87,10 +92,8 @@
   }
 
   .icon-link {
-    width: 32px;
+    color: #fff;
     position: relative;
-    font-size: 2rem;
-    background: none;
     transition: var(--transition);
 
     &:hover {

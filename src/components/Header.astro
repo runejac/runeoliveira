@@ -10,6 +10,7 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     const navMenuItems = document.querySelectorAll('.nav-menu-items a') as NodeListOf<HTMLElement>;
     const menuIcon = document.querySelector('.menu-icon') as HTMLElement;
     const chevronIcon = document.querySelector('.chevron-icon') as HTMLElement;
+    const header = document.querySelector('header') as HTMLElement;
 
     function toggleSidebar() {
       sidebar.classList.toggle('expanded');
@@ -25,6 +26,35 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     navMenuItems.forEach((item) => {
       item.addEventListener('click', toggleSidebar);
     });
+
+    // Scroll functionality
+    let lastScrollPosition = window.scrollY;
+    let ticking = false;
+
+    function handleScroll() {
+      const currentScrollPosition = window.scrollY;
+
+      if (currentScrollPosition <= 0) {
+        header.classList.remove('hide');
+        header.classList.add('show');
+      } else if (currentScrollPosition > lastScrollPosition) {
+        header.classList.remove('show');
+        header.classList.add('hide');
+      } else if (currentScrollPosition < lastScrollPosition) {
+        header.classList.remove('hide');
+        header.classList.add('show');
+      }
+
+      lastScrollPosition = currentScrollPosition;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    });
   });
 </script>
 
@@ -38,12 +68,17 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
         <a href="#projects" data-astro-prefetch>projects</a>
       </li>
       <li class="navbar-item resume">
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">résumé</a>
+        <a href="/resume.pdf" data-astro-prefetch target="_blank" rel="noopener noreferrer"
+          >résumé</a
+        >
+      </li>
+      <li class="hit-me-up">
+        <a
+          href="mailto:runedanielj@gmail.com?subject=Contact%20from%20website"
+          aria-label="mail me section">contact</a
+        >
       </li>
     </ol>
-    <li>
-      <a class="hit-me-up" href="#" aria-label="mail me section">contact</a>
-    </li>
   </nav>
   <div class="hamburger" aria-label="Toggle menu">
     <Icon class="menu-icon visible" name="menu-order" width="40" height="40" />
@@ -51,9 +86,6 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
   </div>
   <div class="background-sidebar" aria-label="Close menu"></div>
   <aside class="sidebar-container">
-    <div class="navbar">
-      <!-- You can add a close icon here if needed -->
-    </div>
     <nav class="nav-menu">
       <ul class="nav-menu-items">
         <li class="navbar-child">
@@ -63,10 +95,15 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
           <a href="#projects" data-astro-prefetch aria-label="projects section">projects</a>
         </li>
         <li class="navbar-child">
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">résumé</a>
+          <a href="/resume.pdf" data-astro-prefetch target="_blank" rel="noopener noreferrer"
+            >résumé</a
+          >
         </li>
         <li class="navbar-child">
-          <a href="#" aria-label="mail me section">contact</a>
+          <a
+            href="mailto:runedanielj@gmail.com?subject=Contact%20from%20website"
+            aria-label="mail me section">contact</a
+          >
         </li>
       </ul>
     </nav>
@@ -74,9 +111,51 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
 </header>
 
 <style>
+  header {
+    position: sticky;
+    display: flex;
+    z-index: 7;
+    top: 0;
+    width: 100%;
+    -moz-box-align: center;
+    -moz-box-pack: justify;
+    background: none;
+
+    @media (min-width: 50em) {
+      height: 80px;
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      -khtml-backdrop-filter: blur(7px);
+      -moz-backdrop-filter: blur(7px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+
+      &:active {
+        outline: 2px solid rgb(165, 165, 165);
+      }
+    }
+  }
+
+  @media (min-width: 50em) {
+    header.show {
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+
+    header.hide {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+  }
+
   .hamburger {
     display: block;
-    position: fixed; /* Ensures it stays in place */
+    position: fixed;
     top: 1rem;
     right: 1rem;
     z-index: 20;
@@ -96,59 +175,25 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     opacity: 1;
   }
 
-  /* Remove rotation from the hidden class */
   .hidden {
     opacity: 0;
     pointer-events: none;
-    /* transform: rotate(180deg); */ /* Removed to fix rotation issue */
   }
 
-  /* Apply rotation when visible */
   .menu-icon.visible {
-    transform: rotate(90deg); /* No rotation when visible */
+    transform: rotate(90deg);
   }
 
   .chevron-icon.visible {
-    transform: rotate(0deg); /* No rotation when visible */
+    transform: rotate(0deg);
   }
 
-  /* Optional: Add rotation when toggling */
-  /* You can customize these values for desired rotation effects */
   .menu-icon.hidden {
     transform: rotate(-90deg);
   }
 
   .chevron-icon.hidden {
     transform: rotate(90deg);
-  }
-
-  header {
-    display: flex;
-    z-index: 7;
-    top: 0;
-    width: 100%;
-    -moz-box-align: center;
-    -moz-box-pack: justify;
-    background: none;
-
-    @media (min-width: 50em) {
-      height: 80px;
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      -khtml-backdrop-filter: blur(7px);
-      -moz-backdrop-filter: blur(7px);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .hamburger {
-      /* Ensured hamburger container has a fixed size */
-      width: 40px;
-      height: 40px;
-
-      svg {
-        fill: var(--text-color);
-      }
-    }
   }
 
   .navbar-container {
@@ -158,10 +203,10 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     @media (min-width: 50em) {
       display: flex;
       align-self: center;
-      background: none;
       transition: var(--transition);
 
       ol {
+        width: 100%;
         display: flex;
         background: none;
         flex-direction: row;
@@ -173,10 +218,7 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
       li {
         background: none;
         list-style: none;
-        width: fit-content;
-        font-size: 1rem;
         transition: var(--transition);
-        font-family: 'Messapia Bold', sans-serif;
         text-transform: uppercase;
 
         &:hover {
@@ -191,6 +233,7 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
         background: none;
       }
       .hit-me-up {
+        position: absolute;
         right: 0;
         margin-right: 2rem;
       }
@@ -202,11 +245,11 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     position: fixed;
     z-index: 10;
     top: 0;
-    right: -70%;
-    width: 70%;
+    right: -100%;
+    width: 100%;
     height: 100vh;
-    background-color: rgba(30, 30, 30, 0.95);
-    transition: right 350ms ease;
+    background-color: rgba(30, 30, 30, 0.652);
+    transition: right 0.2s ease-in-out;
     overflow-y: auto;
 
     @media (min-width: 50em) {
@@ -240,32 +283,34 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
   }
 
   .nav-menu {
-    padding: 2rem;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   }
 
   .nav-menu-items {
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   .navbar-child {
-    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    padding: 1rem;
   }
 
   .navbar-child a {
     color: var(--text-color);
     text-decoration: none;
     font-size: 1.2rem;
-    transition: color 0.3s ease;
-  }
-
-  .navbar-child a:hover {
-    color: var(--accent-color);
+    border-radius: 4px;
+    padding: 0.6rem;
+    &:active {
+      outline: 2px solid rgb(165, 165, 165);
+    }
   }
 
   @media (min-width: 50em) {
@@ -274,16 +319,5 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     .hamburger {
       display: none;
     }
-  }
-
-  /* Add this new style */
-  body.sidebar-open {
-    overflow: hidden;
-  }
-
-  /* Ensure the main content can scroll when the sidebar is open */
-  main {
-    height: 100vh;
-    overflow-y: auto;
   }
 </style>
