@@ -1,44 +1,18 @@
 ---
-import BaseHead from '@/components/BaseHead.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
-
-import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
-import '@/styles/global.css';
+import GlobalStyles from '@/styles/GlobalStyles.astro';
+import BaseHead from '@/components/layout/BaseHead.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: auto;
-        width: auto;
-        z-index: -1;
-        background-color: #000000;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-          radial-gradient(at 50% 32%, hsla(203, 68%, 64%, 1) 0px, transparent 50%),
-          radial-gradient(at 19% 69%, hsla(223, 98%, 64%, 1) 0px, transparent 50%),
-          radial-gradient(at 51% 59%, hsla(354, 84%, 70%, 1) 0px, transparent 50%),
-          radial-gradient(at 97% 75%, hsla(348, 62%, 72%, 1) 0px, transparent 50%),
-          radial-gradient(at 49% 56%, hsla(283, 78%, 63%, 1) 0px, transparent 50%),
-          radial-gradient(at 15% 95%, hsla(330, 76%, 63%, 1) 0px, transparent 50%),
-          url("data:image/svg+xml, %3Csvg viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg' %3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='17' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-      }
-    </style>
+    <BaseHead
+      title="Rune Oliveira"
+      description="Welcome fellow friend. I am a Software Engineer based in Oslo, Norway, focusing on user-centric development with specialization in frontend development."
+    />
+    <GlobalStyles />
   </head>
 
   <body>
