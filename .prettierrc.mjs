@@ -13,7 +13,7 @@ export default {
   tabWidth: 2,
   singleQuote: true,
   trailingComma: 'all',
-  printWidth: 100,
+  printWidth: 70,
   bracketSpacing: true,
   arrowParens: 'always',
 };

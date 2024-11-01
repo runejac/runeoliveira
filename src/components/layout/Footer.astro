@@ -2,7 +2,7 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<footer class="footer-container">
+<footer id="footer" class="footer-container section">
   <div class="footer-content">
     <div class="social-media-container">
       <ul>
@@ -13,7 +13,12 @@ import { Icon } from 'astro-icon/components';
             rel="noopener noreferrer"
             aria-label="open linkedin profile"
           >
-            <Icon name="brand-linkedin" class="icon-link" width="40" height="40" />
+            <Icon
+              name="brand-linkedin"
+              class="icon-link"
+              width="40"
+              height="40"
+            />
           </a>
         </li>
         <li>
@@ -23,7 +28,12 @@ import { Icon } from 'astro-icon/components';
             rel="noopener noreferrer"
             aria-label="open github profile"
           >
-            <Icon name="brand-github" class="icon-link" width="40" height="40" />
+            <Icon
+              name="brand-github"
+              class="icon-link"
+              width="40"
+              height="40"
+            />
           </a>
         </li>
       </ul>
@@ -49,7 +59,8 @@ import { Icon } from 'astro-icon/components';
   .footer-container {
     width: 100%;
     height: 200px;
-    background-image: linear-gradient(#010500, #0105006b), url('/images/mac-code.png');
+    background-image: linear-gradient(#010500, #0105006b),
+      url('/images/mac-code.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center 75%;
