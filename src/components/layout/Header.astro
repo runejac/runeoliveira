@@ -1,15 +1,27 @@
 ---
-import { Icon } from 'astro-icon/components'; // Ensure you have an icon library installed, e.g., astro-icon
+import { Icon } from 'astro-icon/components';
 ---
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger') as HTMLElement;
-    const sidebar = document.querySelector('.sidebar-container') as HTMLElement;
-    const backgroundSidebar = document.querySelector('.background-sidebar') as HTMLElement;
-    const navMenuItems = document.querySelectorAll('.nav-menu-items a') as NodeListOf<HTMLElement>;
-    const menuIcon = document.querySelector('.menu-icon') as HTMLElement;
-    const chevronIcon = document.querySelector('.chevron-icon') as HTMLElement;
+    const hamburger = document.querySelector(
+      '.hamburger',
+    ) as HTMLElement;
+    const sidebar = document.querySelector(
+      '.sidebar-container',
+    ) as HTMLElement;
+    const backgroundSidebar = document.querySelector(
+      '.background-sidebar',
+    ) as HTMLElement;
+    const navMenuItems = document.querySelectorAll(
+      '.nav-menu-items a',
+    ) as NodeListOf<HTMLElement>;
+    const menuIcon = document.querySelector(
+      '.menu-icon',
+    ) as HTMLElement;
+    const chevronIcon = document.querySelector(
+      '.chevron-icon',
+    ) as HTMLElement;
     const header = document.querySelector('header') as HTMLElement;
 
     function toggleSidebar() {
@@ -64,12 +76,12 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
       <li aria-label="scroll down to about section">
         <a href="#about">about</a>
       </li>
-      <li>
-        <a href="#projects" data-astro-prefetch>projects</a>
-      </li>
       <li class="navbar-item resume">
-        <a href="/resume.pdf" data-astro-prefetch target="_blank" rel="noopener noreferrer"
-          >résumé</a
+        <a
+          href="/resume.pdf"
+          data-astro-prefetch
+          target="_blank"
+          rel="noopener noreferrer">résumé</a
         >
       </li>
       <li class="hit-me-up">
@@ -81,22 +93,36 @@ import { Icon } from 'astro-icon/components'; // Ensure you have an icon library
     </ol>
   </nav>
   <div class="hamburger" aria-label="Toggle menu">
-    <Icon class="menu-icon visible" name="menu-order" width="40" height="40" />
-    <Icon class="chevron-icon hidden" name="chevron-right" width="40" height="40" />
+    <Icon
+      class="menu-icon visible"
+      name="menu-order"
+      width="40"
+      height="40"
+    />
+    <Icon
+      class="chevron-icon hidden"
+      name="chevron-right"
+      width="40"
+      height="40"
+    />
   </div>
   <div class="background-sidebar" aria-label="Close menu"></div>
   <aside class="sidebar-container">
     <nav class="nav-menu">
       <ul class="nav-menu-items">
         <li class="navbar-child">
-          <a href="#about" data-astro-prefetch aria-label="about section">about</a>
+          <a
+            href="#about"
+            data-astro-prefetch
+            aria-label="about section">about</a
+          >
         </li>
         <li class="navbar-child">
-          <a href="#projects" data-astro-prefetch aria-label="projects section">projects</a>
-        </li>
-        <li class="navbar-child">
-          <a href="/resume.pdf" data-astro-prefetch target="_blank" rel="noopener noreferrer"
-            >résumé</a
+          <a
+            href="/resume.pdf"
+            data-astro-prefetch
+            target="_blank"
+            rel="noopener noreferrer">résumé</a
           >
         </li>
         <li class="navbar-child">

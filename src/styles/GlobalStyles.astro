@@ -11,6 +11,10 @@
     --green-navbar-hover: #c5efdc;
     --pink: #dd3988;
     --pink-shadow: #791f4d;
+    --glow-color: rgba(255, 255, 255, 0.3);
+    --glow-spread-color: rgba(255, 255, 255, 0.2);
+    --enhanced-glow-color: rgba(255, 255, 255, 0.4);
+    --enhanced-glow-spread-color: rgba(255, 255, 255, 0.3);
   }
 
   * {
@@ -46,7 +50,7 @@
     font-display: swap;
   }
 
-  .background {
+  /*.background {
     position: fixed;
     top: 0;
     left: 0;
@@ -94,13 +98,61 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-  }
+  } */
 
   /* Phoenix */
-  #container3D {
+  #background {
     position: fixed;
-    inset: 0;
-    z-index: 100;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: auto;
+    width: auto;
+    z-index: -2;
+    pointer-events: auto;
+  }
+
+  #background::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.773);
+    z-index: 1;
+  }
+
+  .text-glow {
+    text-shadow:
+      0 0 10px var(--glow-color),
+      0 0 20px var(--glow-spread-color),
+      0 0 30px var(--glow-spread-color);
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      text-shadow:
+        0 0 10px var(--glow-color),
+        0 0 20px var(--glow-spread-color),
+        0 0 30px var(--glow-spread-color);
+    }
+    to {
+      text-shadow:
+        0 0 15px var(--enhanced-glow-color),
+        0 0 25px var(--enhanced-glow-spread-color),
+        0 0 35px var(--enhanced-glow-spread-color);
+    }
+  }
+
+  /* Example of a stronger glow variation */
+  .text-glow-strong {
+    --glow-color: rgba(255, 255, 255, 0.5);
+    --glow-spread-color: rgba(255, 255, 255, 0.4);
+    --enhanced-glow-color: rgba(255, 255, 255, 0.6);
+    --enhanced-glow-spread-color: rgba(255, 255, 255, 0.5);
   }
 </style>
