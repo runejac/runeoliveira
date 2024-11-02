@@ -184,6 +184,8 @@ function initPostprocessing() {
 
 function render() {
 
+  console.log('render');
+
   const time = Date.now() * 0.00005;
 
   camera.position.x += (mouseX - camera.position.x) * 0.066;
