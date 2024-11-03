@@ -13,8 +13,6 @@
     --pink-shadow: #791f4d;
     --glow-color: rgba(255, 255, 255, 0.3);
     --glow-spread-color: rgba(255, 255, 255, 0.2);
-    --enhanced-glow-color: rgba(255, 255, 255, 0.4);
-    --enhanced-glow-spread-color: rgba(255, 255, 255, 0.3);
   }
 
   * {
@@ -58,14 +56,14 @@
   }
   @font-face {
     font-family: 'Source Serif Pro';
-    src: url('/fonts/Source Serif Pro/SourceSerif4Display-Regular.woff2') format('woff2'));
+    src: url('/fonts/source_serif_pro/SourceSerif4Display-Regular.woff2') format('woff2'));
     font-weight: 700;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
     font-family: 'Intel One Mono';
-    src: url('/fonts/Intel One Mono/IntelOneMono-Medium.woff2') format('woff2'));
+    src: url('/fonts/intel_one_mono/IntelOneMono-Medium.woff2') format('woff2'));
     font-style: normal;
     font-display: swap;
   }
@@ -120,7 +118,6 @@
     background-position: center;
   } */
 
-  /* Phoenix */
   #background {
     position: fixed;
     top: 0;
@@ -150,29 +147,5 @@
       0 0 10px var(--glow-color),
       0 0 20px var(--glow-spread-color),
       0 0 30px var(--glow-spread-color);
-    animation: glow 3s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow {
-    from {
-      text-shadow:
-        0 0 10px var(--glow-color),
-        0 0 20px var(--glow-spread-color),
-        0 0 30px var(--glow-spread-color);
-    }
-    to {
-      text-shadow:
-        0 0 15px var(--enhanced-glow-color),
-        0 0 25px var(--enhanced-glow-spread-color),
-        0 0 35px var(--enhanced-glow-spread-color);
-    }
-  }
-
-  /* Example of a stronger glow variation */
-  .text-glow-strong {
-    --glow-color: rgba(255, 255, 255, 0.5);
-    --glow-spread-color: rgba(255, 255, 255, 0.4);
-    --enhanced-glow-color: rgba(255, 255, 255, 0.6);
-    --enhanced-glow-spread-color: rgba(255, 255, 255, 0.5);
   }
 </style>

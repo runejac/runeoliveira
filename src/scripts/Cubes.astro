@@ -56,7 +56,7 @@
     const container = document.getElementById('background');
 
     camera = new THREE.PerspectiveCamera(70, width / height, 1, 3000);
-    camera.position.z = 200;
+    camera.position.z = 100;
 
     scene = new THREE.Scene();
     renderer = new THREE.WebGLRenderer({
@@ -85,10 +85,7 @@
     for (let i = 0; i < xgrid; i++) {
       for (let j = 0; j < ygrid; j++) {
         for (let k = 0; k < zgrid; k++) {
-          const mesh = new THREE.Mesh(
-            sharedGeometry,
-            sharedMaterial.clone(),
-          );
+          const mesh = new THREE.Mesh(sharedGeometry, sharedMaterial.clone());
 
           const x = 300 * (i - xgrid / 2);
           const y = 300 * (j - ygrid / 2);
