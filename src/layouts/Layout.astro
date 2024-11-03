@@ -3,6 +3,7 @@ import GlobalStyles from '@/styles/GlobalStyles.astro';
 import BaseHead from '@/components/layout/BaseHead.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import Cubes from '@/scripts/Cubes.astro';
 ---
 
 <!doctype html>
@@ -22,7 +23,5 @@ import Footer from '@/components/layout/Footer.astro';
       <slot />
     </main>
     <Footer />
-  </body><script>
-    import '../scripts/cubes.ts';
-  </script>
+  </body><Cubes />
 </html>
