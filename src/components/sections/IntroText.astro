@@ -42,6 +42,7 @@
 
   const hero = document.querySelector<HTMLElement>('.signal-hero');
   const precisePointer = window.matchMedia('(pointer: fine)');
+  const compactViewport = window.matchMedia('(max-width: 47.99rem)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   if (hero) {
@@ -91,7 +92,6 @@
     if (scanner && !reducedMotion.matches) {
       const dots = Array.from(hero.querySelectorAll<HTMLElement>('.orbit-dot'));
       const collidingDots = new WeakSet<HTMLElement>();
-      const proximityRange = 200;
       let collisionFrame = 0;
 
       const launchImpactWave = (
@@ -148,8 +148,36 @@
       const triggerImpact = (dot: HTMLElement) => {
         const impactColor = window.getComputedStyle(dot).color;
 
-        launchImpactWave(dot, impactColor, 'impact-wave-primary', 0, 0.72, 7.8, 0.58);
-        launchImpactWave(dot, impactColor, 'impact-wave-echo', 0.06, 0.94, 10.5, 0.24);
+        if (compactViewport.matches) {
+          launchImpactWave(
+            dot,
+            impactColor,
+            'impact-wave-primary',
+            0,
+            0.62,
+            5.2,
+            0.42,
+          );
+        } else {
+          launchImpactWave(
+            dot,
+            impactColor,
+            'impact-wave-primary',
+            0,
+            0.72,
+            7.8,
+            0.58,
+          );
+          launchImpactWave(
+            dot,
+            impactColor,
+            'impact-wave-echo',
+            0.06,
+            0.94,
+            10.5,
+            0.24,
+          );
+        }
 
         dot.classList.remove('hit');
         scanner.classList.remove('impact');
@@ -176,11 +204,14 @@
           const dotX = dotBounds.left + dotBounds.width / 2;
           const dotY = dotBounds.top + dotBounds.height / 2;
           const dotIsVisible =
+            dotBounds.width > 0 &&
+            dotBounds.height > 0 &&
             dotX >= 0 &&
             dotX <= window.innerWidth &&
             dotY >= 0 &&
             dotY <= window.innerHeight;
           const scannerDistance = Math.abs(scannerX - dotX);
+          const proximityRange = compactViewport.matches ? 110 : 200;
           const rawProximity =
             scannerVisible && dotIsVisible
               ? Math.max(0, 1 - scannerDistance / proximityRange)
@@ -269,6 +300,7 @@
 
   .orbit-dot {
     --proximity: 0;
+    --impact-scale: 2.1;
 
     position: absolute;
     top: 50%;
@@ -574,7 +606,7 @@
       box-shadow:
         0 0 0.8rem currentColor,
         0 0 2.4rem currentColor;
-      transform: translate(-50%, -50%) scale(2.1);
+      transform: translate(-50%, -50%) scale(var(--impact-scale));
     }
   }
 
@@ -612,6 +644,50 @@
     }
     100% {
       opacity: 0;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .orbit-one {
+      top: 14%;
+      right: -36vw;
+      width: min(92vw, 28rem);
+      border-color: rgba(184, 255, 88, 0.12);
+      animation-duration: 42s;
+    }
+
+    .orbit-two {
+      display: none;
+    }
+
+    .orbit-dot {
+      --impact-scale: 1.65;
+
+      width: 0.46rem;
+      height: 0.46rem;
+      box-shadow: 0 0 calc(0.95rem + (var(--proximity) * 1rem))
+        color-mix(in srgb, currentColor 75%, transparent);
+      transform: translate(-50%, -50%)
+        scale(calc(1 + (var(--proximity) * 0.32)));
+    }
+
+    .orbit-dot::before {
+      width: 0.46rem;
+      height: 0.46rem;
+      transform: translate(-50%, -50%)
+        scale(calc(1 + (var(--proximity) * 2)));
+    }
+
+    .orbit-dot::after {
+      width: 2rem;
+    }
+
+    .impact-wave {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-color: color-mix(in srgb, var(--impact-color) 68%, white);
+      box-shadow: 0 0 0.55rem
+        color-mix(in srgb, var(--impact-color) 46%, transparent);
     }
   }
 
