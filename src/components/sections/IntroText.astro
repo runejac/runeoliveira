@@ -49,6 +49,13 @@
     orbits.forEach((orbit) => {
       const dot = document.createElement('span');
       dot.className = 'orbit-dot';
+
+      Array.from(orbit.attributes).forEach(({ name, value }) => {
+        if (name.startsWith('data-astro-cid-')) {
+          dot.setAttribute(name, value);
+        }
+      });
+
       orbit.append(dot);
     });
 
