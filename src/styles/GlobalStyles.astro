@@ -16,20 +16,10 @@
   }
 
   @font-face {
-    font-family: 'Source Serif 4';
-    src: url('/fonts/source_serif_pro/SourceSerif4Variable-Roman.woff2')
-      format('woff2');
-    font-weight: 200 900;
+    font-family: 'Satoshi';
+    src: url('/fonts/Satoshi/Satoshi-Light.woff2') format('woff2');
+    font-weight: 300;
     font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Source Serif 4';
-    src: url('/fonts/source_serif_pro/SourceSerif4Variable-Italic.woff2')
-      format('woff2');
-    font-weight: 200 900;
-    font-style: italic;
     font-display: swap;
   }
 
@@ -42,18 +32,20 @@
   }
 
   :root {
-    --paper: #f3f0e8;
-    --paper-deep: #e8e3d8;
-    --ink: #161714;
-    --muted: #63645e;
-    --line: rgba(22, 23, 20, 0.17);
-    --accent: #ff4f32;
-    --accent-soft: #ffd8cf;
-    --white: #fffdf8;
+    --night: #080b0d;
+    --night-soft: #0e1317;
+    --panel: #12181d;
+    --light: #edf1e8;
+    --fog: #d9ddd4;
+    --muted: #909a93;
+    --line: rgba(237, 241, 232, 0.16);
+    --signal: #b8ff58;
+    --signal-soft: rgba(184, 255, 88, 0.14);
+    --violet: #8e7dff;
+    --display: 'Satoshi', 'Atkinson', system-ui, sans-serif;
     --sans: 'Atkinson', system-ui, sans-serif;
-    --serif: 'Source Serif 4', Georgia, serif;
     --mono: 'Intel One Mono', ui-monospace, monospace;
-    --page: min(100% - 2rem, 88rem);
+    --page: min(100% - 2rem, 92rem);
     --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
@@ -65,20 +57,15 @@
 
   html {
     scroll-behavior: smooth;
-    background: var(--paper);
+    background: var(--night);
   }
 
   body {
     min-width: 320px;
     min-height: 100vh;
     overflow-x: hidden;
-    color: var(--ink);
-    background: radial-gradient(
-        circle at 92% 4%,
-        rgba(255, 79, 50, 0.1),
-        transparent 28rem
-      ),
-      var(--paper);
+    color: var(--light);
+    background: var(--night);
     font-family: var(--sans);
     font-size: 1rem;
     line-height: 1.5;
@@ -87,8 +74,8 @@
   }
 
   ::selection {
-    color: var(--ink);
-    background: var(--accent-soft);
+    color: var(--night);
+    background: var(--signal);
   }
 
   img {
@@ -106,7 +93,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid var(--signal);
     outline-offset: 4px;
   }
 
@@ -116,8 +103,8 @@
     top: 0.75rem;
     left: 0.75rem;
     padding: 0.65rem 0.9rem;
-    color: var(--white);
-    background: var(--ink);
+    color: var(--night);
+    background: var(--signal);
     transform: translateY(-160%);
     transition: transform 180ms ease;
   }
@@ -134,27 +121,25 @@
   .eyebrow {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.7rem;
     color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-size: 0.67rem;
+    letter-spacing: 0.09em;
     line-height: 1.2;
     text-transform: uppercase;
   }
 
   .eyebrow::before {
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 50%;
-    background: var(--accent);
+    width: 1.7rem;
+    height: 1px;
+    background: currentColor;
     content: '';
-    flex: 0 0 auto;
   }
 
   @media (min-width: 48rem) {
     :root {
-      --page: min(100% - 5rem, 88rem);
+      --page: min(100% - 5rem, 92rem);
     }
   }
 

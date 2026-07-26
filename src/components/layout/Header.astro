@@ -1,116 +1,152 @@
 <header class="site-header">
   <div class="header-inner">
     <a class="wordmark" href="#top" aria-label="Rune Oliveira, back to top">
-      <span class="wordmark-mark" aria-hidden="true">R/O</span>
-      <span class="wordmark-name">Rune Oliveira</span>
+      <span>RO</span><i aria-hidden="true"></i><small>26</small>
     </a>
 
     <nav aria-label="Primary navigation">
-      <a href="#approach">Approach</a>
-      <a href="#about">About</a>
+      <a href="#approach"><span>01</span> Method</a>
+      <a href="#about"><span>02</span> Story</a>
       <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-        Résumé <span aria-hidden="true">↗</span>
+        <span>03</span> Résumé ↗
       </a>
-      <a
-        class="contact-link"
-        href="mailto:runedanielj@gmail.com?subject=Hello%20Rune">Let’s talk</a
-      >
     </nav>
+
+    <a
+      class="contact-link"
+      href="mailto:runedanielj@gmail.com?subject=Hello%20Rune"
+    >
+      <span>Start a conversation</span><i aria-hidden="true">↗</i>
+    </a>
   </div>
 </header>
 
 <style>
   .site-header {
-    position: sticky;
-    z-index: 20;
-    top: 0;
-    border-bottom: 1px solid var(--line);
-    background: rgba(243, 240, 232, 0.88);
-    backdrop-filter: blur(18px);
+    position: fixed;
+    z-index: 30;
+    top: 0.8rem;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
   }
 
   .header-inner {
     display: flex;
     width: var(--page);
-    min-height: 4.5rem;
+    min-height: 3.6rem;
     margin-inline: auto;
+    padding: 0.45rem 0.5rem 0.45rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+    background: rgba(8, 11, 13, 0.75);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(18px);
+    pointer-events: auto;
   }
 
   .wordmark {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
+    display: flex;
+    min-width: 4.2rem;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-family: var(--mono);
     text-decoration: none;
   }
 
-  .wordmark-mark {
-    display: grid;
-    width: 2.4rem;
-    height: 2.4rem;
-    border-radius: 50%;
-    color: var(--white);
-    background: var(--ink);
-    place-items: center;
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    letter-spacing: -0.05em;
+  .wordmark span {
+    color: var(--light);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
   }
 
-  .wordmark-name {
-    font-weight: 700;
-    letter-spacing: -0.02em;
+  .wordmark i {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 0.8rem var(--signal);
+  }
+
+  .wordmark small {
+    color: var(--muted);
+    font-size: 0.58rem;
   }
 
   nav {
-    display: flex;
+    display: none;
     align-items: center;
-    gap: clamp(0.8rem, 2vw, 2rem);
+    gap: clamp(1.25rem, 3vw, 3rem);
   }
 
   nav a {
     color: var(--muted);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     text-decoration: none;
-    transition: color 160ms ease;
+    transition: color 180ms ease;
+  }
+
+  nav a span {
+    margin-right: 0.3rem;
+    color: rgba(184, 255, 88, 0.56);
+    font-family: var(--mono);
+    font-size: 0.55rem;
   }
 
   nav a:hover {
-    color: var(--ink);
+    color: var(--light);
   }
 
-  nav .contact-link {
-    padding: 0.55rem 0.85rem;
+  .contact-link {
+    display: flex;
+    min-height: 2.65rem;
+    padding: 0.3rem 0.3rem 0.3rem 1rem;
     border-radius: 999px;
-    color: var(--white);
-    background: var(--ink);
-    transition:
-      color 160ms ease,
-      background 160ms ease,
-      transform 160ms var(--ease);
+    color: var(--night);
+    background: var(--signal);
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 180ms var(--ease);
   }
 
-  nav .contact-link:hover {
-    color: var(--ink);
-    background: var(--accent-soft);
-    transform: translateY(-1px);
+  .contact-link i {
+    display: grid;
+    width: 2.05rem;
+    height: 2.05rem;
+    border-radius: 50%;
+    color: var(--light);
+    background: var(--night);
+    place-items: center;
+    font-style: normal;
   }
 
-  @media (max-width: 42rem) {
-    .header-inner {
-      min-height: 4rem;
-    }
+  .contact-link:hover {
+    transform: translateY(-2px);
+  }
 
-    .wordmark-name,
-    nav a:first-child,
-    nav a:nth-child(3) {
+  @media (max-width: 29rem) {
+    .contact-link span {
       display: none;
     }
 
+    .contact-link {
+      padding-left: 0.3rem;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .site-header {
+      top: 1.2rem;
+    }
+
     nav {
-      gap: 1rem;
+      display: flex;
     }
   }
 </style>

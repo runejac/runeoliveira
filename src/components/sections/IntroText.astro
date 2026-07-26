@@ -1,188 +1,263 @@
-<section id="top" class="hero section-shell">
-  <div class="hero-copy">
-    <p class="eyebrow">Software engineer · Oslo, Norway</p>
-    <h1>
-      Thoughtful software,<br />built for <em>actual people.</em>
-    </h1>
-    <p class="hero-intro">
-      I’m Rune, a software engineer working in the media industry. I like the
-      space where product thinking, frontend craft, and solid engineering meet.
-    </p>
-    <div class="hero-actions">
-      <a class="primary-action" href="#approach">Explore my approach</a>
-      <a
-        class="text-action"
-        href="mailto:runedanielj@gmail.com?subject=Hello%20Rune"
-      >
-        Say hello <span aria-hidden="true">↗</span>
-      </a>
-    </div>
+<section id="top" class="signal-hero">
+  <div class="signal-field" aria-hidden="true">
+    <div class="dot-field"></div>
+    <div class="cursor-light"></div>
+    <div class="orbit orbit-one"></div>
+    <div class="orbit orbit-two"></div>
+    <div class="scanner"></div>
   </div>
 
-  <aside class="now-card" aria-label="A little more about Rune">
-    <p class="now-label">Right now / beyond work</p>
-    <dl>
-      <div>
-        <dt>Building</dt>
-        <dd>Digital products for the media industry</dd>
-      </div>
-      <div>
-        <dt>Thinking about</dt>
-        <dd>Interfaces that explain themselves</dd>
-      </div>
-      <div>
-        <dt>Recharging with</dt>
-        <dd>Fly fishing, jiu-jitsu, games & mountain air</dd>
-      </div>
-    </dl>
-    <div class="card-note" aria-hidden="true">
-      <span>59.9° N</span>
-      <span>10.7° E</span>
+  <div class="hero-inner section-shell">
+    <div class="hero-index">
+      <span>Rune Oliveira</span>
+      <span>Portfolio / 2026</span>
+      <span>Oslo · 59.9° N</span>
     </div>
-  </aside>
 
-  <a class="scroll-note" href="#approach">
-    How I think about the work <span aria-hidden="true">↓</span>
-  </a>
+    <div class="hero-copy">
+      <p class="eyebrow">Software engineer · media industry</p>
+      <h1>Making complex things <em>feel clear.</em></h1>
+    </div>
+
+    <div class="hero-bottom">
+      <p>
+        I build digital products where product thinking, frontend craft, and
+        dependable engineering meet.
+      </p>
+      <a href="#approach">Enter the method <span aria-hidden="true">↘</span></a
+      >
+    </div>
+
+    <aside class="status-note">
+      <span class="pulse" aria-hidden="true"></span>
+      <div>
+        <small>Current signal</small>
+        <p>Building for people, not page views.</p>
+      </div>
+    </aside>
+  </div>
 </section>
 
+<script>
+  const hero = document.querySelector<HTMLElement>('.signal-hero');
+  const precisePointer = window.matchMedia('(pointer: fine)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (hero && precisePointer.matches && !reducedMotion.matches) {
+    let frame = 0;
+
+    hero.addEventListener('pointermove', (event) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const bounds = hero.getBoundingClientRect();
+        hero.style.setProperty(
+          '--pointer-x',
+          `${event.clientX - bounds.left}px`,
+        );
+        hero.style.setProperty(
+          '--pointer-y',
+          `${event.clientY - bounds.top}px`,
+        );
+      });
+    });
+  }
+</script>
+
 <style>
-  .hero {
+  .signal-hero {
+    --pointer-x: 70%;
+    --pointer-y: 32%;
+    position: relative;
+    min-height: 100svh;
+    overflow: hidden;
+    background: var(--night);
+  }
+
+  .signal-field,
+  .dot-field,
+  .cursor-light,
+  .scanner {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .dot-field {
+    opacity: 0.32;
+    background-image: radial-gradient(
+      rgba(237, 241, 232, 0.34) 0.8px,
+      transparent 0.8px
+    );
+    background-size: 24px 24px;
+    mask-image: radial-gradient(circle at 66% 42%, black 0, transparent 58%);
+  }
+
+  .cursor-light {
+    opacity: 0.85;
+    background: radial-gradient(
+      circle 24rem at var(--pointer-x) var(--pointer-y),
+      rgba(142, 125, 255, 0.2),
+      rgba(184, 255, 88, 0.07) 35%,
+      transparent 70%
+    );
+    transition: background-position 100ms linear;
+  }
+
+  .orbit {
+    position: absolute;
+    border: 1px solid rgba(184, 255, 88, 0.16);
+    border-radius: 50%;
+  }
+
+  .orbit::after {
+    position: absolute;
+    top: 12%;
+    left: 12%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 1.5rem rgba(184, 255, 88, 0.85);
+    content: '';
+  }
+
+  .orbit-one {
+    top: 12%;
+    right: -9rem;
+    width: min(54vw, 48rem);
+    aspect-ratio: 1;
+    animation: orbit 34s linear infinite;
+  }
+
+  .orbit-two {
+    right: 7%;
+    bottom: -16rem;
+    width: min(34vw, 30rem);
+    aspect-ratio: 1;
+    border-color: rgba(142, 125, 255, 0.19);
+    animation: orbit 46s linear infinite reverse;
+  }
+
+  .scanner {
+    width: 1px;
+    opacity: 0.24;
+    background: linear-gradient(transparent 5%, var(--signal), transparent 88%);
+    box-shadow: 0 0 2rem rgba(184, 255, 88, 0.22);
+    animation: scan 16s var(--ease) infinite;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
     display: grid;
-    min-height: calc(100svh - 4.5rem);
-    padding-block: clamp(4rem, 10vw, 8rem) 2rem;
-    grid-template-columns: minmax(0, 1fr);
-    align-content: center;
+    min-height: 100svh;
+    padding-block: 7rem 2rem;
+    align-content: space-between;
     gap: 3rem;
   }
 
-  .hero-copy {
-    max-width: 65rem;
-    animation: enter 700ms var(--ease) both;
-  }
-
-  h1 {
-    max-width: 13ch;
-    margin-top: clamp(1.5rem, 4vw, 3.5rem);
-    font-family: var(--serif);
-    font-size: clamp(3.5rem, 9.2vw, 8.5rem);
-    font-weight: 520;
-    letter-spacing: -0.065em;
-    line-height: 0.88;
-  }
-
-  h1 em {
-    color: var(--accent);
-    font-weight: 420;
-  }
-
-  .hero-intro {
-    max-width: 38rem;
-    margin-top: clamp(2rem, 5vw, 3.5rem);
-    color: var(--muted);
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
-    letter-spacing: -0.015em;
-    line-height: 1.45;
-  }
-
-  .hero-actions {
+  .hero-index {
     display: flex;
-    margin-top: 2rem;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem 1.4rem;
-  }
-
-  .primary-action,
-  .text-action {
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .primary-action {
-    padding: 0.82rem 1.1rem;
-    border: 1px solid var(--ink);
-    border-radius: 999px;
-    color: var(--white);
-    background: var(--ink);
-    transition:
-      color 180ms ease,
-      background 180ms ease,
-      transform 180ms var(--ease);
-  }
-
-  .primary-action:hover {
-    color: var(--ink);
-    background: transparent;
-    transform: translateY(-2px);
-  }
-
-  .text-action {
-    border-bottom: 1px solid var(--ink);
-  }
-
-  .now-card {
-    position: relative;
-    max-width: 31rem;
-    padding: 1.25rem;
-    border: 1px solid var(--line);
-    border-radius: 1.25rem;
-    background: rgba(255, 253, 248, 0.58);
-    animation: enter 700ms 140ms var(--ease) both;
-  }
-
-  .now-label,
-  dt,
-  .card-note {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    justify-content: space-between;
+    gap: 1rem;
     font-family: var(--mono);
-    font-size: 0.68rem;
+    font-size: 0.61rem;
     letter-spacing: 0.07em;
     text-transform: uppercase;
   }
 
-  .now-label {
-    margin-bottom: 1.25rem;
-    color: var(--accent);
-  }
-
-  dl > div {
-    display: grid;
-    padding-block: 0.85rem;
-    border-top: 1px solid var(--line);
-    grid-template-columns: 7rem 1fr;
-    gap: 1rem;
-  }
-
-  dt {
-    color: var(--muted);
-  }
-
-  dd {
-    font-size: 0.95rem;
-    line-height: 1.35;
-  }
-
-  .card-note {
-    display: flex;
-    margin-top: 1.5rem;
-    color: var(--muted);
-    justify-content: space-between;
-  }
-
-  .scroll-note {
+  .hero-index span:nth-child(2) {
     display: none;
+  }
+
+  .hero-copy {
+    max-width: 76rem;
+    animation: arrive 800ms 100ms var(--ease) both;
+  }
+
+  h1 {
+    max-width: 10ch;
+    margin-top: clamp(1.5rem, 4vw, 3rem);
+    font-family: var(--display);
+    font-size: clamp(4.2rem, 11.5vw, 11rem);
+    font-weight: 300;
+    letter-spacing: -0.075em;
+    line-height: 0.82;
+  }
+
+  h1 em {
+    display: block;
+    color: var(--signal);
+    font-style: normal;
+  }
+
+  .hero-bottom {
+    display: grid;
+    max-width: 58rem;
+    align-items: end;
+    gap: 1.5rem;
+  }
+
+  .hero-bottom p {
+    max-width: 34rem;
     color: var(--muted);
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+  }
+
+  .hero-bottom a {
+    width: max-content;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--signal);
     font-family: var(--mono);
     font-size: 0.7rem;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.07em;
     text-decoration: none;
     text-transform: uppercase;
   }
 
-  @keyframes enter {
+  .status-note {
+    display: flex;
+    max-width: 19rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    align-items: flex-start;
+    gap: 0.8rem;
+    background: rgba(14, 19, 23, 0.72);
+    backdrop-filter: blur(12px);
+  }
+
+  .pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-top: 0.25rem;
+    border-radius: 50%;
+    background: var(--signal);
+    box-shadow: 0 0 1rem var(--signal);
+    animation: pulse 2.6s ease-in-out infinite;
+    flex: 0 0 auto;
+  }
+
+  .status-note small {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .status-note p {
+    margin-top: 0.2rem;
+    font-size: 0.85rem;
+  }
+
+  @keyframes arrive {
     from {
       opacity: 0;
-      transform: translateY(1.25rem);
+      transform: translateY(1.5rem);
     }
     to {
       opacity: 1;
@@ -190,24 +265,59 @@
     }
   }
 
-  @media (min-width: 65rem) {
-    .hero {
-      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.38fr);
-      grid-template-rows: 1fr auto;
-      align-items: end;
-      column-gap: clamp(3rem, 7vw, 7rem);
+  @keyframes orbit {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @keyframes scan {
+    0%,
+    14% {
+      transform: translateX(-2vw);
+      opacity: 0;
+    }
+    22% {
+      opacity: 0.24;
+    }
+    78% {
+      opacity: 0.24;
+    }
+    86%,
+    100% {
+      transform: translateX(102vw);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.42;
+      transform: scale(0.72);
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .hero-inner {
+      padding-block: 7.5rem 2.5rem;
+      grid-template-columns: 1fr auto;
     }
 
-    .now-card {
-      margin-bottom: clamp(2rem, 7vw, 5.5rem);
-    }
-
-    .scroll-note {
-      display: inline-flex;
-      width: max-content;
-      align-items: center;
-      gap: 0.75rem;
+    .hero-index,
+    .hero-copy {
       grid-column: 1 / -1;
+    }
+
+    .hero-index span:nth-child(2) {
+      display: inline;
+    }
+
+    .hero-bottom {
+      grid-template-columns: 1fr auto;
+    }
+
+    .status-note {
+      align-self: end;
     }
   }
 </style>

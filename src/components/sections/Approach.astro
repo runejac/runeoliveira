@@ -1,177 +1,221 @@
-<section id="approach" class="approach section-shell">
-  <header class="approach-heading">
-    <p class="eyebrow">How I work</p>
-    <h2>Simple does not mean generic.</h2>
-    <p>
-      It means knowing what deserves attention—and being confident enough to
-      remove what does not.
-    </p>
-  </header>
+<section id="approach" class="method">
+  <div class="method-inner section-shell">
+    <header class="method-heading">
+      <div class="section-index">
+        <span>01</span>
+        <span>Method</span>
+      </div>
+      <div>
+        <p class="eyebrow">What stays constant</p>
+        <h2>Good software is a conversation.</h2>
+      </div>
+      <p class="heading-note">
+        Between a person and an interface. Between a surface and its system.
+        Between the people making it.
+      </p>
+    </header>
 
-  <div class="principles">
-    <article>
-      <span>01</span>
-      <h3>Useful over flashy.</h3>
-      <p>
-        I want interfaces to make intent obvious, feedback immediate, and the
-        details quietly dependable.
-      </p>
-    </article>
-    <article>
-      <span>02</span>
-      <h3>System to surface.</h3>
-      <p>
-        I enjoy following a product from the interface through its APIs and
-        data, so the whole experience stays coherent.
-      </p>
-    </article>
-    <article>
-      <span>03</span>
-      <h3>Built with others.</h3>
-      <p>
-        Good software comes from clear conversation, small iterations, and
-        shared ownership—not from disappearing into a corner.
-      </p>
-    </article>
-  </div>
+    <div class="method-grid">
+      <article>
+        <span>Clarity / 01</span>
+        <h3>Useful over flashy.</h3>
+        <p>
+          Intent should be obvious, feedback immediate, and the clever parts
+          quiet enough to stay out of the way.
+        </p>
+      </article>
+      <article>
+        <span>Context / 02</span>
+        <h3>System to surface.</h3>
+        <p>
+          I follow product behavior from interface through APIs and data so the
+          whole experience tells the same story.
+        </p>
+      </article>
+      <article>
+        <span>Momentum / 03</span>
+        <h3>Built with others.</h3>
+        <p>
+          Clear conversation, small iterations, and shared ownership make better
+          software than working in isolation.
+        </p>
+      </article>
+    </div>
 
-  <div class="focus-line">
-    <p>My lane</p>
-    <ul aria-label="Areas of focus">
-      <li>Frontend engineering</li>
-      <li>Product thinking</li>
-      <li>Interface craft</li>
-      <li>Systems curiosity</li>
-    </ul>
+    <div class="signal-band">
+      <p>My working principle</p>
+      <strong>Clarity is a feature.</strong>
+      <span>Frontend · Product · Systems</span>
+    </div>
   </div>
 </section>
 
 <style>
-  .approach {
-    padding-block: clamp(6rem, 12vw, 11rem);
+  .method {
+    position: relative;
+    padding-block: clamp(7rem, 14vw, 12rem);
+    border-top: 1px solid var(--line);
+    background: linear-gradient(
+        90deg,
+        transparent 49.9%,
+        rgba(237, 241, 232, 0.035) 50%,
+        transparent 50.1%
+      ),
+      var(--night-soft);
   }
 
-  .approach-heading {
+  .method-heading {
     display: grid;
-    margin-bottom: clamp(4rem, 8vw, 7rem);
-    gap: 1.5rem;
+    margin-bottom: clamp(4rem, 9vw, 8rem);
+    gap: 2.5rem;
   }
 
-  .approach-heading h2 {
-    max-width: 11ch;
-    font-family: var(--serif);
-    font-size: clamp(3.2rem, 7.5vw, 7rem);
-    font-weight: 500;
-    letter-spacing: -0.06em;
-    line-height: 0.92;
-  }
-
-  .approach-heading > p:last-child {
-    max-width: 32rem;
+  .section-index {
+    display: flex;
     color: var(--muted);
-    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    flex-direction: column;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  .principles {
+  .section-index span:first-child {
+    color: var(--signal);
+  }
+
+  .method-heading h2 {
+    max-width: 11ch;
+    margin-top: 1.5rem;
+    font-family: var(--display);
+    font-size: clamp(3.6rem, 8vw, 7.7rem);
+    font-weight: 300;
+    letter-spacing: -0.065em;
+    line-height: 0.88;
+  }
+
+  .heading-note {
+    max-width: 28rem;
+    color: var(--muted);
+    font-size: 1.08rem;
+    align-self: end;
+  }
+
+  .method-grid {
     display: grid;
     border-top: 1px solid var(--line);
   }
 
-  .principles article {
-    display: grid;
-    padding-block: 2rem;
+  .method-grid article {
+    position: relative;
+    min-height: 20rem;
+    padding: 2rem 0;
+    overflow: hidden;
     border-bottom: 1px solid var(--line);
-    grid-template-columns: 2.5rem 1fr;
-    gap: 0.4rem 1rem;
   }
 
-  .principles span,
-  .focus-line > p,
-  .focus-line li {
+  .method-grid article::after {
+    position: absolute;
+    right: -4rem;
+    bottom: -7rem;
+    width: 13rem;
+    height: 13rem;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    content: '';
+    transition:
+      border-color 250ms ease,
+      transform 500ms var(--ease);
+  }
+
+  .method-grid article:hover::after {
+    border-color: var(--signal);
+    transform: scale(1.12);
+  }
+
+  .method-grid article > span,
+  .signal-band p,
+  .signal-band span {
+    color: var(--muted);
     font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
-  .principles span {
-    padding-top: 0.45rem;
-    color: var(--accent);
+  .method-grid h3 {
+    max-width: 9ch;
+    margin-top: 3rem;
+    font-family: var(--display);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.045em;
+    line-height: 1;
   }
 
-  .principles h3 {
-    font-family: var(--serif);
-    font-size: clamp(1.9rem, 3vw, 2.6rem);
-    font-weight: 520;
-    letter-spacing: -0.035em;
-  }
-
-  .principles p {
-    max-width: 29rem;
+  .method-grid p {
+    position: relative;
+    z-index: 1;
+    max-width: 25rem;
+    margin-top: 1.25rem;
     color: var(--muted);
-    grid-column: 2;
   }
 
-  .focus-line {
+  .signal-band {
     display: grid;
-    margin-top: clamp(3rem, 6vw, 5rem);
-    padding: clamp(1.5rem, 4vw, 2.5rem);
-    border-radius: 1.25rem;
-    background: var(--accent-soft);
-    gap: 1.5rem;
+    margin-top: clamp(3rem, 7vw, 6rem);
+    padding: 1.3rem;
+    color: var(--night);
+    background: var(--signal);
+    align-items: center;
+    gap: 1rem;
   }
 
-  .focus-line > p {
-    color: var(--accent);
+  .signal-band p,
+  .signal-band span {
+    color: rgba(8, 11, 13, 0.62);
   }
 
-  .focus-line ul {
-    display: flex;
-    list-style: none;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-  }
-
-  .focus-line li {
-    padding: 0.55rem 0.75rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: rgba(255, 253, 248, 0.35);
+  .signal-band strong {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    font-weight: 300;
+    letter-spacing: -0.04em;
   }
 
   @media (min-width: 48rem) {
-    .approach-heading {
-      grid-template-columns: 1.25fr 0.75fr;
-      align-items: end;
+    .method-heading {
+      grid-template-columns: 5rem 1fr minmax(16rem, 0.45fr);
     }
 
-    .approach-heading .eyebrow {
-      grid-column: 1 / -1;
-    }
-
-    .principles {
+    .method-grid {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    .principles article {
-      min-height: 22rem;
+    .method-grid article {
       padding: 2rem clamp(1.5rem, 3vw, 3rem) 2rem 0;
       border-right: 1px solid var(--line);
-      grid-template-columns: 2.5rem 1fr;
-      align-content: start;
     }
 
-    .principles article:not(:first-child) {
+    .method-grid article:not(:first-child) {
       padding-left: clamp(1.5rem, 3vw, 3rem);
     }
 
-    .principles article:last-child {
+    .method-grid article:last-child {
       border-right: 0;
     }
 
-    .focus-line {
-      grid-template-columns: 8rem 1fr;
-      align-items: center;
+    .signal-band {
+      grid-template-columns: 1fr 1.5fr 1fr;
+      text-align: center;
+    }
+
+    .signal-band p {
+      text-align: left;
+    }
+
+    .signal-band span {
+      text-align: right;
     }
   }
 </style>
