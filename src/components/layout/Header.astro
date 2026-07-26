@@ -53,9 +53,9 @@
     min-width: 5rem;
     min-height: 3rem;
     padding-inline: 0.45rem;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
-    gap: 0.35rem;
+    gap: 0.28rem;
     font-family: var(--mono);
     text-decoration: none;
   }
@@ -67,16 +67,39 @@
   }
 
   .wordmark i {
-    width: 0.35rem;
-    height: 0.35rem;
-    border-radius: 50%;
+    position: relative;
+    display: block;
+    width: 0.22rem;
+    height: 0.92rem;
+    flex: 0 0 auto;
+  }
+
+  .wordmark i::before,
+  .wordmark i::after {
+    position: absolute;
+    left: 50%;
     background: var(--signal);
-    box-shadow: 0 0 0.8rem var(--signal);
+    box-shadow: 0 0 0.7rem var(--signal);
+    content: '';
+    transform: translateX(-50%);
+  }
+
+  .wordmark i::before {
+    top: 0;
+    width: 0.16rem;
+    height: 0.59rem;
+    border-radius: 999px;
+  }
+
+  .wordmark i::after {
+    bottom: 0;
+    width: 0.2rem;
+    height: 0.2rem;
+    border-radius: 50%;
   }
 
   .wordmark small {
-    color: var(--muted);
-    font-size: 0.58rem;
+    display: none;
   }
 
   nav {

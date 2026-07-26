@@ -31,13 +31,15 @@
       <span class="pulse" aria-hidden="true"></span>
       <div>
         <small>Current signal</small>
-        <p>Building for people, not page views.</p>
+        <p>Currently building digital products for Norwegian media.</p>
       </div>
     </aside>
   </div>
 </section>
 
 <script>
+  import { animate } from 'motion/mini';
+
   const hero = document.querySelector<HTMLElement>('.signal-hero');
   const precisePointer = window.matchMedia('(pointer: fine)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -89,10 +91,65 @@
     if (scanner && !reducedMotion.matches) {
       const dots = Array.from(hero.querySelectorAll<HTMLElement>('.orbit-dot'));
       const collidingDots = new WeakSet<HTMLElement>();
+      const proximityRange = 200;
       let collisionFrame = 0;
+
+      const launchImpactWave = (
+        dot: HTMLElement,
+        impactColor: string,
+        className: string,
+        delay: number,
+        duration: number,
+        reach: number,
+        peakOpacity: number,
+      ) => {
+        const heroBounds = hero.getBoundingClientRect();
+        const dotBounds = dot.getBoundingClientRect();
+        const wave = document.createElement('span');
+
+        wave.className = `impact-wave ${className}`;
+        wave.setAttribute('aria-hidden', 'true');
+        wave.style.left = `${dotBounds.left + dotBounds.width / 2 - heroBounds.left}px`;
+        wave.style.top = `${dotBounds.top + dotBounds.height / 2 - heroBounds.top}px`;
+        wave.style.setProperty('--impact-color', impactColor);
+
+        Array.from(dot.attributes).forEach(({ name, value }) => {
+          if (name.startsWith('data-astro-cid-')) {
+            wave.setAttribute(name, value);
+          }
+        });
+
+        hero.append(wave);
+        animate(
+          wave,
+          {
+            opacity: [0, peakOpacity, peakOpacity * 0.62, 0],
+            transform: [
+              'translate(-50%, -50%) scale(0.4)',
+              'translate(-50%, -50%) scale(0.9)',
+              `translate(-50%, -50%) scale(${reach * 0.38})`,
+              `translate(-50%, -50%) scale(${reach})`,
+            ],
+          },
+          {
+            delay,
+            duration,
+            ease: [0.16, 1, 0.3, 1],
+            times: [0, 0.08, 0.36, 1],
+          },
+        );
+
+        window.setTimeout(
+          () => wave.remove(),
+          (delay + duration) * 1000 + 100,
+        );
+      };
 
       const triggerImpact = (dot: HTMLElement) => {
         const impactColor = window.getComputedStyle(dot).color;
+
+        launchImpactWave(dot, impactColor, 'impact-wave-primary', 0, 0.72, 7.8, 0.58);
+        launchImpactWave(dot, impactColor, 'impact-wave-echo', 0.06, 0.94, 10.5, 0.24);
 
         dot.classList.remove('hit');
         scanner.classList.remove('impact');
@@ -123,8 +180,17 @@
             dotX <= window.innerWidth &&
             dotY >= 0 &&
             dotY <= window.innerHeight;
+          const scannerDistance = Math.abs(scannerX - dotX);
+          const rawProximity =
+            scannerVisible && dotIsVisible
+              ? Math.max(0, 1 - scannerDistance / proximityRange)
+              : 0;
+          const proximity =
+            rawProximity * rawProximity * (3 - 2 * rawProximity);
           const isColliding =
-            scannerVisible && dotIsVisible && Math.abs(scannerX - dotX) <= 7;
+            scannerVisible && dotIsVisible && scannerDistance <= 7;
+
+          dot.style.setProperty('--proximity', proximity.toFixed(3));
 
           if (isColliding && !collidingDots.has(dot)) {
             collidingDots.add(dot);
@@ -144,6 +210,7 @@
           } else if (!entry.isIntersecting) {
             cancelAnimationFrame(collisionFrame);
             collisionFrame = 0;
+            dots.forEach((dot) => dot.style.removeProperty('--proximity'));
           }
         },
         { threshold: 0.05 },
@@ -201,6 +268,8 @@
   }
 
   .orbit-dot {
+    --proximity: 0;
+
     position: absolute;
     top: 50%;
     left: 100%;
@@ -210,14 +279,18 @@
     border-radius: 50%;
     color: var(--signal);
     background: var(--signal);
-    box-shadow: 0 0 1.5rem rgba(184, 255, 88, 0.85);
-    transform: translate(-50%, -50%);
+    box-shadow: 0 0 calc(1.35rem + (var(--proximity) * 1.7rem))
+      color-mix(in srgb, currentColor 85%, transparent);
+    transform: translate(-50%, -50%)
+      scale(calc(1 + (var(--proximity) * 0.42)));
+    transition:
+      box-shadow 80ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 80ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .orbit-two .orbit-dot {
     color: var(--violet);
     background: var(--violet);
-    box-shadow: 0 0 1.5rem rgba(142, 125, 255, 0.85);
   }
 
   .orbit-dot::before,
@@ -236,7 +309,12 @@
     border: 1px solid currentColor;
     border-radius: 50%;
     color: var(--signal);
-    transform: translate(-50%, -50%);
+    opacity: calc(var(--proximity) * 0.42);
+    transform: translate(-50%, -50%)
+      scale(calc(1 + (var(--proximity) * 2.8)));
+    transition:
+      opacity 90ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 90ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .orbit-two .orbit-dot::before {
@@ -256,15 +334,40 @@
   }
 
   .orbit-dot.hit {
-    animation: impact-core 650ms var(--ease);
+    animation: impact-core 560ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .orbit-dot.hit::before {
-    animation: impact-ring 680ms ease-out;
+    animation: impact-ring 440ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .orbit-dot.hit::after {
     animation: impact-spark 580ms ease-out;
+  }
+
+  .impact-wave {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--impact-color) 82%, white);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow:
+      0 0 0.75rem color-mix(in srgb, var(--impact-color) 62%, transparent),
+      inset 0 0 0.5rem color-mix(in srgb, var(--impact-color) 40%, transparent);
+    transform: translate(-50%, -50%) scale(0.4);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  .impact-wave-echo {
+    border-color: color-mix(in srgb, var(--impact-color) 48%, transparent);
+    box-shadow: 0 0 1rem
+      color-mix(in srgb, var(--impact-color) 30%, transparent);
+    filter: blur(0.45px);
   }
 
   .orbit-one {
@@ -477,12 +580,12 @@
 
   @keyframes impact-ring {
     0% {
-      opacity: 0.9;
-      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.72;
+      transform: translate(-50%, -50%) scale(0.75);
     }
     100% {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(8);
+      transform: translate(-50%, -50%) scale(3.2);
     }
   }
 
