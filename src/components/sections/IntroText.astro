@@ -47,6 +47,14 @@
     const orbits = hero.querySelectorAll<HTMLElement>('.orbit');
 
     orbits.forEach((orbit) => {
+      const orbitDuration = Number.parseFloat(
+        window.getComputedStyle(orbit).animationDuration,
+      );
+
+      if (Number.isFinite(orbitDuration) && orbitDuration > 0) {
+        orbit.style.animationDelay = `-${Math.random() * orbitDuration}s`;
+      }
+
       const dot = document.createElement('span');
       dot.className = 'orbit-dot';
 
@@ -84,8 +92,11 @@
       let collisionFrame = 0;
 
       const triggerImpact = (dot: HTMLElement) => {
+        const impactColor = window.getComputedStyle(dot).color;
+
         dot.classList.remove('hit');
         scanner.classList.remove('impact');
+        scanner.style.setProperty('--scanner-color', impactColor);
         void dot.offsetWidth;
         dot.classList.add('hit');
         scanner.classList.add('impact');
@@ -93,6 +104,7 @@
         window.setTimeout(() => {
           dot.classList.remove('hit');
           scanner.classList.remove('impact');
+          scanner.style.removeProperty('--scanner-color');
         }, 700);
       };
 
@@ -105,7 +117,14 @@
         dots.forEach((dot) => {
           const dotBounds = dot.getBoundingClientRect();
           const dotX = dotBounds.left + dotBounds.width / 2;
-          const isColliding = scannerVisible && Math.abs(scannerX - dotX) <= 7;
+          const dotY = dotBounds.top + dotBounds.height / 2;
+          const dotIsVisible =
+            dotX >= 0 &&
+            dotX <= window.innerWidth &&
+            dotY >= 0 &&
+            dotY <= window.innerHeight;
+          const isColliding =
+            scannerVisible && dotIsVisible && Math.abs(scannerX - dotX) <= 7;
 
           if (isColliding && !collidingDots.has(dot)) {
             collidingDots.add(dot);
@@ -183,8 +202,8 @@
 
   .orbit-dot {
     position: absolute;
-    top: 12%;
-    left: 12%;
+    top: 50%;
+    left: 100%;
     display: block;
     width: 0.55rem;
     height: 0.55rem;
@@ -192,11 +211,10 @@
     color: var(--signal);
     background: var(--signal);
     box-shadow: 0 0 1.5rem rgba(184, 255, 88, 0.85);
+    transform: translate(-50%, -50%);
   }
 
   .orbit-two .orbit-dot {
-    top: 68%;
-    left: 7%;
     color: var(--violet);
     background: var(--violet);
     box-shadow: 0 0 1.5rem rgba(142, 125, 255, 0.85);
@@ -267,19 +285,33 @@
   }
 
   .scanner {
+    --scanner-color: #70d8ff;
     width: 1px;
     opacity: 0.24;
-    background: linear-gradient(transparent 5%, var(--signal), transparent 88%);
-    box-shadow: 0 0 2rem rgba(184, 255, 88, 0.22);
+    background: linear-gradient(
+      transparent 5%,
+      var(--scanner-color),
+      transparent 88%
+    );
+    box-shadow: 0 0 2rem
+      color-mix(in srgb, var(--scanner-color) 38%, transparent);
     animation: scan 16s var(--ease) infinite;
+    transition:
+      background 140ms ease,
+      box-shadow 140ms ease;
   }
 
   .scanner::after {
     position: absolute;
     inset: 0 -0.4rem;
     opacity: 0;
-    background: linear-gradient(transparent 5%, var(--signal), transparent 88%);
-    box-shadow: 0 0 2.4rem rgba(184, 255, 88, 0.7);
+    background: linear-gradient(
+      transparent 5%,
+      var(--scanner-color),
+      transparent 88%
+    );
+    box-shadow: 0 0 2.4rem
+      color-mix(in srgb, var(--scanner-color) 75%, transparent);
     content: '';
   }
 
@@ -439,7 +471,7 @@
       box-shadow:
         0 0 0.8rem currentColor,
         0 0 2.4rem currentColor;
-      transform: scale(2.1);
+      transform: translate(-50%, -50%) scale(2.1);
     }
   }
 
