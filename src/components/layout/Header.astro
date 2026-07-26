@@ -34,9 +34,9 @@
   .header-inner {
     display: flex;
     width: var(--page);
-    min-height: 3.6rem;
+    min-height: 4.2rem;
     margin-inline: auto;
-    padding: 0.45rem 0.5rem 0.45rem 0.9rem;
+    padding: 0.5rem 0.6rem 0.5rem 0.8rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     align-items: center;
@@ -50,8 +50,11 @@
 
   .wordmark {
     display: flex;
-    min-width: 4.2rem;
+    min-width: 5rem;
+    min-height: 3rem;
+    padding-inline: 0.45rem;
     align-items: baseline;
+    justify-content: center;
     gap: 0.35rem;
     font-family: var(--mono);
     text-decoration: none;
@@ -79,14 +82,21 @@
   nav {
     display: none;
     align-items: center;
-    gap: clamp(1.25rem, 3vw, 3rem);
+    gap: clamp(0.25rem, 0.8vw, 0.75rem);
   }
 
   nav a {
+    display: flex;
+    min-height: 3rem;
+    padding-inline: clamp(0.85rem, 1.5vw, 1.25rem);
+    border-radius: 999px;
     color: var(--muted);
+    align-items: center;
     font-size: 0.78rem;
     text-decoration: none;
-    transition: color 180ms ease;
+    transition:
+      color 180ms ease,
+      background 180ms ease;
   }
 
   nav a span {
@@ -98,12 +108,13 @@
 
   nav a:hover {
     color: var(--light);
+    background: rgba(237, 241, 232, 0.08);
   }
 
   .contact-link {
     display: flex;
-    min-height: 2.65rem;
-    padding: 0.3rem 0.3rem 0.3rem 1rem;
+    min-height: 3.1rem;
+    padding: 0.3rem 0.3rem 0.3rem 1.2rem;
     border-radius: 999px;
     color: var(--night);
     background: var(--signal);
@@ -117,8 +128,8 @@
 
   .contact-link i {
     display: grid;
-    width: 2.05rem;
-    height: 2.05rem;
+    width: 2.45rem;
+    height: 2.45rem;
     border-radius: 50%;
     color: var(--light);
     background: var(--night);
