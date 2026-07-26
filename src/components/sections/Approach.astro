@@ -1,0 +1,177 @@
+<section id="approach" class="approach section-shell">
+  <header class="approach-heading">
+    <p class="eyebrow">How I work</p>
+    <h2>Simple does not mean generic.</h2>
+    <p>
+      It means knowing what deserves attention—and being confident enough to
+      remove what does not.
+    </p>
+  </header>
+
+  <div class="principles">
+    <article>
+      <span>01</span>
+      <h3>Useful over flashy.</h3>
+      <p>
+        I want interfaces to make intent obvious, feedback immediate, and the
+        details quietly dependable.
+      </p>
+    </article>
+    <article>
+      <span>02</span>
+      <h3>System to surface.</h3>
+      <p>
+        I enjoy following a product from the interface through its APIs and
+        data, so the whole experience stays coherent.
+      </p>
+    </article>
+    <article>
+      <span>03</span>
+      <h3>Built with others.</h3>
+      <p>
+        Good software comes from clear conversation, small iterations, and
+        shared ownership—not from disappearing into a corner.
+      </p>
+    </article>
+  </div>
+
+  <div class="focus-line">
+    <p>My lane</p>
+    <ul aria-label="Areas of focus">
+      <li>Frontend engineering</li>
+      <li>Product thinking</li>
+      <li>Interface craft</li>
+      <li>Systems curiosity</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .approach {
+    padding-block: clamp(6rem, 12vw, 11rem);
+  }
+
+  .approach-heading {
+    display: grid;
+    margin-bottom: clamp(4rem, 8vw, 7rem);
+    gap: 1.5rem;
+  }
+
+  .approach-heading h2 {
+    max-width: 11ch;
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 7.5vw, 7rem);
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 0.92;
+  }
+
+  .approach-heading > p:last-child {
+    max-width: 32rem;
+    color: var(--muted);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+  }
+
+  .principles {
+    display: grid;
+    border-top: 1px solid var(--line);
+  }
+
+  .principles article {
+    display: grid;
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--line);
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.4rem 1rem;
+  }
+
+  .principles span,
+  .focus-line > p,
+  .focus-line li {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .principles span {
+    padding-top: 0.45rem;
+    color: var(--accent);
+  }
+
+  .principles h3 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 520;
+    letter-spacing: -0.035em;
+  }
+
+  .principles p {
+    max-width: 29rem;
+    color: var(--muted);
+    grid-column: 2;
+  }
+
+  .focus-line {
+    display: grid;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 1.25rem;
+    background: var(--accent-soft);
+    gap: 1.5rem;
+  }
+
+  .focus-line > p {
+    color: var(--accent);
+  }
+
+  .focus-line ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .focus-line li {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 253, 248, 0.35);
+  }
+
+  @media (min-width: 48rem) {
+    .approach-heading {
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: end;
+    }
+
+    .approach-heading .eyebrow {
+      grid-column: 1 / -1;
+    }
+
+    .principles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .principles article {
+      min-height: 22rem;
+      padding: 2rem clamp(1.5rem, 3vw, 3rem) 2rem 0;
+      border-right: 1px solid var(--line);
+      grid-template-columns: 2.5rem 1fr;
+      align-content: start;
+    }
+
+    .principles article:not(:first-child) {
+      padding-left: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .principles article:last-child {
+      border-right: 0;
+    }
+
+    .focus-line {
+      grid-template-columns: 8rem 1fr;
+      align-items: center;
+    }
+  }
+</style>
