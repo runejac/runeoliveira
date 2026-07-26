@@ -1,27 +1,25 @@
 ---
-import GlobalStyles from '@/styles/GlobalStyles.astro';
 import BaseHead from '@/components/layout/BaseHead.astro';
-import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
-import Cubes from '@/scripts/Cubes.astro';
+import Header from '@/components/layout/Header.astro';
+import GlobalStyles from '@/styles/GlobalStyles.astro';
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <BaseHead
-      title="Rune Oliveira"
-      description="Welcome fellow friend. I am a Software Engineer based in Oslo, Norway, focusing on user-centric development with specialization in frontend development."
+      title="Rune Oliveira - Software Engineer in Oslo"
+      description="Rune Oliveira is a software engineer in Oslo building thoughtful, user-centered digital products for the media industry."
     />
     <GlobalStyles />
   </head>
-
   <body>
-    <div id="background"></div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <Header />
-    <main>
+    <main id="main-content">
       <slot />
     </main>
     <Footer />
-  </body><Cubes />
+  </body>
 </html>

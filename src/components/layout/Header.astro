@@ -1,349 +1,116 @@
----
-import { Icon } from 'astro-icon/components';
----
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="#top" aria-label="Rune Oliveira, back to top">
+      <span class="wordmark-mark" aria-hidden="true">R/O</span>
+      <span class="wordmark-name">Rune Oliveira</span>
+    </a>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector(
-      '.hamburger',
-    ) as HTMLElement;
-    const sidebar = document.querySelector(
-      '.sidebar-container',
-    ) as HTMLElement;
-    const backgroundSidebar = document.querySelector(
-      '.background-sidebar',
-    ) as HTMLElement;
-    const navMenuItems = document.querySelectorAll(
-      '.nav-menu-items a',
-    ) as NodeListOf<HTMLElement>;
-    const menuIcon = document.querySelector(
-      '.menu-icon',
-    ) as HTMLElement;
-    const chevronIcon = document.querySelector(
-      '.chevron-icon',
-    ) as HTMLElement;
-    const header = document.querySelector('header') as HTMLElement;
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('expanded');
-      backgroundSidebar.classList.toggle('visible');
-      document.body.classList.toggle('sidebar-open');
-      menuIcon.classList.toggle('hidden');
-      chevronIcon.classList.toggle('hidden');
-    }
-
-    hamburger.addEventListener('click', toggleSidebar);
-    backgroundSidebar.addEventListener('click', toggleSidebar);
-
-    navMenuItems.forEach((item) => {
-      item.addEventListener('click', toggleSidebar);
-    });
-
-    // Scroll functionality
-    let lastScrollPosition = window.scrollY;
-    let ticking = false;
-
-    function handleScroll() {
-      const currentScrollPosition = window.scrollY;
-
-      if (currentScrollPosition <= 0) {
-        header.classList.remove('hide');
-        header.classList.add('show');
-      } else if (currentScrollPosition > lastScrollPosition) {
-        header.classList.remove('show');
-        header.classList.add('hide');
-      } else if (currentScrollPosition < lastScrollPosition) {
-        header.classList.remove('hide');
-        header.classList.add('show');
-      }
-
-      lastScrollPosition = currentScrollPosition;
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        window.requestAnimationFrame(handleScroll);
-        ticking = true;
-      }
-    });
-  });
-</script>
-
-<header>
-  <nav class="navbar-container">
-    <ol>
-      <li aria-label="scroll down to about section">
-        <a href="#about">about</a>
-      </li>
-      <li class="navbar-item resume">
-        <a
-          href="/resume.pdf"
-          data-astro-prefetch
-          target="_blank"
-          rel="noopener noreferrer">résumé</a
-        >
-      </li>
-      <li class="hit-me-up">
-        <a
-          href="mailto:runedanielj@gmail.com?subject=Contact%20from%20website"
-          aria-label="mail me section">contact</a
-        >
-      </li>
-    </ol>
-  </nav>
-  <div class="hamburger" aria-label="Toggle menu">
-    <Icon
-      class="menu-icon visible"
-      name="menu-order"
-      width="40"
-      height="40"
-    />
-    <Icon
-      class="chevron-icon hidden"
-      name="chevron-right"
-      width="40"
-      height="40"
-    />
-  </div>
-  <div class="background-sidebar" aria-label="Close menu"></div>
-  <aside class="sidebar-container">
-    <nav class="nav-menu">
-      <ul class="nav-menu-items">
-        <li class="navbar-child">
-          <a
-            href="#about"
-            data-astro-prefetch
-            aria-label="about section">about</a
-          >
-        </li>
-        <li class="navbar-child">
-          <a
-            href="/resume.pdf"
-            data-astro-prefetch
-            target="_blank"
-            rel="noopener noreferrer">résumé</a
-          >
-        </li>
-        <li class="navbar-child">
-          <a
-            href="mailto:runedanielj@gmail.com?subject=Contact%20from%20website"
-            aria-label="mail me section">contact</a
-          >
-        </li>
-      </ul>
+    <nav aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        Résumé <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        class="contact-link"
+        href="mailto:runedanielj@gmail.com?subject=Hello%20Rune">Let’s talk</a
+      >
     </nav>
-  </aside>
+  </div>
 </header>
 
 <style>
-  header {
+  .site-header {
     position: sticky;
-    display: flex;
-    z-index: 7;
-    top: 0;
-    width: 100%;
-    -moz-box-align: center;
-    -moz-box-pack: justify;
-    background: none;
-
-    @media (min-width: 50em) {
-      height: 80px;
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      -khtml-backdrop-filter: blur(7px);
-      -moz-backdrop-filter: blur(7px);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
-    }
-
-    .hamburger {
-      width: 40px;
-      height: 40px;
-      border-radius: 4px;
-
-      &:active {
-        outline: 2px solid rgb(165, 165, 165);
-      }
-    }
-  }
-
-  @media (min-width: 50em) {
-    header.show {
-      opacity: 1;
-      transition: opacity 0.2s ease;
-    }
-
-    header.hide {
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-  }
-
-  .hamburger {
-    display: block;
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
     z-index: 20;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-  }
-
-  .menu-icon,
-  .chevron-icon {
-    position: absolute;
     top: 0;
-    left: 0;
-    transition:
-      opacity 0.3s ease,
-      transform 0.3s ease;
-    opacity: 1;
+    border-bottom: 1px solid var(--line);
+    background: rgba(243, 240, 232, 0.88);
+    backdrop-filter: blur(18px);
   }
 
-  .hidden {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .menu-icon.visible {
-    transform: rotate(90deg);
-  }
-
-  .chevron-icon.visible {
-    transform: rotate(0deg);
-  }
-
-  .menu-icon.hidden {
-    transform: rotate(-90deg);
-  }
-
-  .chevron-icon.hidden {
-    transform: rotate(90deg);
-  }
-
-  .navbar-container {
-    display: none;
-    width: 100%;
-
-    @media (min-width: 50em) {
-      display: flex;
-      align-self: center;
-      transition: var(--transition);
-
-      ol {
-        width: 100%;
-        display: flex;
-        background: none;
-        flex-direction: row;
-        justify-content: center;
-        gap: 4rem;
-        padding: 1px;
-      }
-
-      li {
-        background: none;
-        list-style: none;
-        transition: var(--transition);
-        text-transform: uppercase;
-
-        &:hover {
-          transform: translateY(-3px);
-          transition: var(--transition);
-        }
-      }
-
-      a {
-        padding: 0;
-        text-decoration: none;
-        background: none;
-      }
-      .hit-me-up {
-        position: absolute;
-        right: 0;
-        margin-right: 2rem;
-      }
-    }
-  }
-
-  .sidebar-container {
+  .header-inner {
     display: flex;
-    position: fixed;
-    z-index: 10;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(30, 30, 30, 0.652);
-    transition: right 0.2s ease-in-out;
-    overflow-y: auto;
-
-    @media (min-width: 50em) {
-      display: none;
-    }
-
-    &.expanded {
-      right: 0;
-    }
-  }
-
-  .background-sidebar {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    z-index: 8;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 350ms ease,
-      visibility 0s linear 350ms;
-  }
-
-  .background-sidebar.visible {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 350ms ease;
-  }
-
-  .nav-menu {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: var(--page);
+    min-height: 4.5rem;
+    margin-inline: auto;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
   }
 
-  .nav-menu-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .navbar-child {
-    border-radius: 4px;
-    padding: 1rem;
-  }
-
-  .navbar-child a {
-    color: var(--text-color);
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
     text-decoration: none;
-    font-size: 1.2rem;
-    border-radius: 4px;
-    padding: 0.6rem;
-    &:active {
-      outline: 2px solid rgb(165, 165, 165);
-    }
   }
 
-  @media (min-width: 50em) {
-    .sidebar-container,
-    .background-sidebar,
-    .hamburger {
+  .wordmark-mark {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--ink);
+    place-items: center;
+    font-family: var(--mono);
+    font-size: 0.67rem;
+    letter-spacing: -0.05em;
+  }
+
+  .wordmark-name {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 2vw, 2rem);
+  }
+
+  nav a {
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 160ms ease;
+  }
+
+  nav a:hover {
+    color: var(--ink);
+  }
+
+  nav .contact-link {
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    color: var(--white);
+    background: var(--ink);
+    transition:
+      color 160ms ease,
+      background 160ms ease,
+      transform 160ms var(--ease);
+  }
+
+  nav .contact-link:hover {
+    color: var(--ink);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 42rem) {
+    .header-inner {
+      min-height: 4rem;
+    }
+
+    .wordmark-name,
+    nav a:first-child,
+    nav a:nth-child(3) {
       display: none;
+    }
+
+    nav {
+      gap: 1rem;
     }
   }
 </style>

@@ -1,148 +1,175 @@
 <style is:global>
-  :root {
-    --main-white: #f1f1f1b6;
-    --main-red: #af002d;
-    --main-orange: #ff7a18;
-    --main-red: #af002d;
-    --main-cyan: #319197;
-    --transition: all 0.1s ease-in-out;
-    --yellow-background: #2c2c2c;
-    --selection: #1e1e1e;
-    --green-navbar-hover: #c5efdc;
-    --pink: #dd3988;
-    --pink-shadow: #791f4d;
-    --glow-color: rgba(255, 255, 255, 0.3);
-    --glow-spread-color: rgba(255, 255, 255, 0.2);
-  }
-
-  * {
-    font-family: 'Atkinson';
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    color: var(--main-white);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin: 0;
-    padding: 0;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0;
-  }
-
   @font-face {
-    font-family: 'Atkinson Regular';
+    font-family: 'Atkinson';
     src: url('/fonts/atkinson/atkinson-regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
   }
+
   @font-face {
-    font-family: 'Atkinson Bold';
+    font-family: 'Atkinson';
     src: url('/fonts/atkinson/atkinson-bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
   }
+
   @font-face {
-    font-family: 'Satoshi Light';
-    src: url('/fonts/Satoshi/Satoshi-Light.woff2') format('woff2');
-    font-weight: 700;
+    font-family: 'Source Serif 4';
+    src: url('/fonts/source_serif_pro/SourceSerif4Variable-Roman.woff2')
+      format('woff2');
+    font-weight: 200 900;
     font-style: normal;
     font-display: swap;
   }
+
   @font-face {
-    font-family: 'Source Serif Pro';
-    src: url('/fonts/source_serif_pro/SourceSerif4Display-Regular.woff2') format('woff2'));
-    font-weight: 700;
-    font-style: normal;
+    font-family: 'Source Serif 4';
+    src: url('/fonts/source_serif_pro/SourceSerif4Variable-Italic.woff2')
+      format('woff2');
+    font-weight: 200 900;
+    font-style: italic;
     font-display: swap;
   }
+
   @font-face {
     font-family: 'Intel One Mono';
-    src: url('/fonts/intel_one_mono/IntelOneMono-Medium.woff2') format('woff2'));
+    src: url('/fonts/intel_one_mono/IntelOneMono-Medium.woff2') format('woff2');
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
   }
 
-  /*.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
-    width: auto;
-    z-index: -1;
-    background-color: #000000;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.4),
-        rgba(0, 0, 0, 0.4)
-      ),
-      radial-gradient(
-        at 50% 32%,
-        hsla(203, 68%, 64%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(
-        at 19% 69%,
-        hsla(223, 98%, 64%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(
-        at 51% 59%,
-        hsla(354, 84%, 70%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(
-        at 97% 75%,
-        hsla(348, 62%, 72%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(
-        at 49% 56%,
-        hsla(283, 78%, 63%, 1) 0px,
-        transparent 50%
-      ),
-      radial-gradient(
-        at 15% 95%,
-        hsla(330, 76%, 63%, 1) 0px,
-        transparent 50%
-      ),
-      url("data:image/svg+xml, %3Csvg viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg' %3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='17' numOctaves='3' stitchTiles='stitch' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  } */
-
-  #background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
-    width: auto;
-    z-index: -2;
-    pointer-events: auto;
+  :root {
+    --paper: #f3f0e8;
+    --paper-deep: #e8e3d8;
+    --ink: #161714;
+    --muted: #63645e;
+    --line: rgba(22, 23, 20, 0.17);
+    --accent: #ff4f32;
+    --accent-soft: #ffd8cf;
+    --white: #fffdf8;
+    --sans: 'Atkinson', system-ui, sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --mono: 'Intel One Mono', ui-monospace, monospace;
+    --page: min(100% - 2rem, 88rem);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
-  #background::after {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--paper);
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--ink);
+    background: radial-gradient(
+        circle at 92% 4%,
+        rgba(255, 79, 50, 0.1),
+        transparent 28rem
+      ),
+      var(--paper);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    color: var(--ink);
+    background: var(--accent-soft);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  .skip-link {
+    position: fixed;
+    z-index: 100;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    color: var(--white);
+    background: var(--ink);
+    transform: translateY(-160%);
+    transition: transform 180ms ease;
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
+  .section-shell {
+    width: var(--page);
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent);
     content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.773);
-    z-index: 1;
+    flex: 0 0 auto;
   }
 
-  .text-glow {
-    text-shadow:
-      0 0 10px var(--glow-color),
-      0 0 20px var(--glow-spread-color),
-      0 0 30px var(--glow-spread-color);
+  @media (min-width: 48rem) {
+    :root {
+      --page: min(100% - 5rem, 88rem);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>

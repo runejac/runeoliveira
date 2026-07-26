@@ -1,88 +1,213 @@
----
-import RuneOliveira from '../misc/rune-oliveira.astro';
----
-
-<section id="intro" class="intro-text-container section">
-  <div class="intro-text-box">
-    <div>
-      <RuneOliveira />
-    </div>
-    <div>
-      <h2 class="text-glow">software engineer</h2>
-    </div>
-    <div>
-      <h3 class="text-glow">based in Oslo, coding for the media industry</h3>
+<section id="top" class="hero section-shell">
+  <div class="hero-copy">
+    <p class="eyebrow">Software engineer · Oslo, Norway</p>
+    <h1>
+      Thoughtful software,<br />built for <em>actual people.</em>
+    </h1>
+    <p class="hero-intro">
+      I’m Rune, a software engineer working in the media industry. I like the
+      space where product thinking, frontend craft, and solid engineering meet.
+    </p>
+    <div class="hero-actions">
+      <a class="primary-action" href="#work">See selected work</a>
+      <a
+        class="text-action"
+        href="mailto:runedanielj@gmail.com?subject=Hello%20Rune"
+      >
+        Say hello <span aria-hidden="true">↗</span>
+      </a>
     </div>
   </div>
-  <style>
-    .intro-text-container {
-      height: 100svh;
-      margin-bottom: 6rem;
-    }
 
-    .intro-text-box {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+  <aside class="now-card" aria-label="A little more about Rune">
+    <p class="now-label">Right now / beyond work</p>
+    <dl>
+      <div>
+        <dt>Building</dt>
+        <dd>Digital products for the media industry</dd>
+      </div>
+      <div>
+        <dt>Thinking about</dt>
+        <dd>Interfaces that explain themselves</dd>
+      </div>
+      <div>
+        <dt>Recharging with</dt>
+        <dd>Fly fishing, jiu-jitsu, games & mountain air</dd>
+      </div>
+    </dl>
+    <div class="card-note" aria-hidden="true">
+      <span>59.9° N</span>
+      <span>10.7° E</span>
+    </div>
+  </aside>
 
-    .intro-text-box h1 {
-      font-family: 'Satoshi Light', serif;
-      font-size: 4rem;
-      letter-spacing: -0.07em;
-      color: #dee0d7;
-      text-transform: lowercase;
-      letter-spacing: 10px;
-    }
-
-    .intro-text-box h2 {
-      font-family: 'Satoshi Light', serif;
-      font-size: 3rem;
-      letter-spacing: 0.04em;
-      -webkit-background-clip: text;
-      position: relative;
-      display: inline-block;
-      color: #dee0d7;
-    }
-
-    .intro-text-box h3 {
-      font-family: 'Satoshi Light', serif;
-      background: none;
-      font-size: 2.3rem;
-      color: #dee0d7;
-    }
-
-    @media (min-width: 50em) {
-      .intro-text-container {
-        margin-bottom: 0;
-      }
-      .intro-text-box h1 {
-        font-size: 6rem;
-      }
-
-      .intro-text-box h2 {
-        font-size: 3.5rem;
-      }
-
-      .intro-text-box h3 {
-        font-size: 2.6rem;
-        margin-bottom: 80px;
-      }
-    }
-
-    @media (min-width: 70em) {
-      .intro-text-box h1 {
-        font-size: 7.6rem;
-      }
-
-      .intro-text-box h2 {
-        font-size: 4.5rem;
-      }
-
-      .intro-text-box h3 {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
+  <a class="scroll-note" href="#work">
+    Scroll to selected work <span aria-hidden="true">↓</span>
+  </a>
 </section>
+
+<style>
+  .hero {
+    display: grid;
+    min-height: calc(100svh - 4.5rem);
+    padding-block: clamp(4rem, 10vw, 8rem) 2rem;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: center;
+    gap: 3rem;
+  }
+
+  .hero-copy {
+    max-width: 65rem;
+    animation: enter 700ms var(--ease) both;
+  }
+
+  h1 {
+    max-width: 13ch;
+    margin-top: clamp(1.5rem, 4vw, 3.5rem);
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9.2vw, 8.5rem);
+    font-weight: 520;
+    letter-spacing: -0.065em;
+    line-height: 0.88;
+  }
+
+  h1 em {
+    color: var(--accent);
+    font-weight: 420;
+  }
+
+  .hero-intro {
+    max-width: 38rem;
+    margin-top: clamp(2rem, 5vw, 3.5rem);
+    color: var(--muted);
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    letter-spacing: -0.015em;
+    line-height: 1.45;
+  }
+
+  .hero-actions {
+    display: flex;
+    margin-top: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 1.4rem;
+  }
+
+  .primary-action,
+  .text-action {
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .primary-action {
+    padding: 0.82rem 1.1rem;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    color: var(--white);
+    background: var(--ink);
+    transition:
+      color 180ms ease,
+      background 180ms ease,
+      transform 180ms var(--ease);
+  }
+
+  .primary-action:hover {
+    color: var(--ink);
+    background: transparent;
+    transform: translateY(-2px);
+  }
+
+  .text-action {
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .now-card {
+    position: relative;
+    max-width: 31rem;
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+    background: rgba(255, 253, 248, 0.58);
+    animation: enter 700ms 140ms var(--ease) both;
+  }
+
+  .now-label,
+  dt,
+  .card-note {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .now-label {
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+  }
+
+  dl > div {
+    display: grid;
+    padding-block: 0.85rem;
+    border-top: 1px solid var(--line);
+    grid-template-columns: 7rem 1fr;
+    gap: 1rem;
+  }
+
+  dt {
+    color: var(--muted);
+  }
+
+  dd {
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .card-note {
+    display: flex;
+    margin-top: 1.5rem;
+    color: var(--muted);
+    justify-content: space-between;
+  }
+
+  .scroll-note {
+    display: none;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (min-width: 65rem) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.38fr);
+      grid-template-rows: 1fr auto;
+      align-items: end;
+      column-gap: clamp(3rem, 7vw, 7rem);
+    }
+
+    .now-card {
+      margin-bottom: clamp(2rem, 7vw, 5.5rem);
+    }
+
+    .scroll-note {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 0.75rem;
+      grid-column: 1 / -1;
+    }
+  }
+</style>

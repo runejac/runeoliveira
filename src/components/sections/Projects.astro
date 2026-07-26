@@ -1,0 +1,238 @@
+---
+const projects = [
+  {
+    number: '01',
+    title: 'Tidsreisen',
+    type: 'Location-aware learning experience',
+    image: '/images/tidsreisenImage.png',
+    description:
+      'Created for Rælingen municipality to help primary-school students explore a cultural trail as it looked 350 years ago.',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Mapbox'],
+    source: 'https://github.com/runejac/PRO201_EXAM_Tidsreisen_Byaaa',
+  },
+  {
+    number: '02',
+    title: 'Retro Market',
+    type: 'Hybrid marketplace concept',
+    image: '/images/retro-game.png',
+    description:
+      'A marketplace for retro-game collectors, combining condition-aware listings with a map for finding nearby sellers.',
+    technologies: ['TypeScript', 'Vue', 'Ionic', 'GraphQL'],
+    source: 'https://github.com/runejac/TDS200_h22_exam',
+  },
+  {
+    number: '03',
+    title: 'Reversed Image',
+    type: 'Native Android application',
+    image: '/images/reversedImageSearchImage.png',
+    description:
+      'An Android app that uses a camera or gallery image as input and returns related results in a focused mobile flow.',
+    technologies: ['Kotlin', 'XML', 'SQLite'],
+    source: 'https://github.com/runejac/PGR208_EXAM_Reversed_Image_Search',
+  },
+];
+---
+
+<section id="work" class="projects section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Selected work</p>
+    <h2>A few things I’ve made.</h2>
+    <p>
+      Earlier projects that shaped how I think about useful interfaces,
+      real-world constraints, and the systems behind them.
+    </p>
+  </div>
+
+  <div class="project-list">
+    {
+      projects.map((project) => (
+        <article class="project">
+          <div class="project-number">{project.number}</div>
+          <div class="project-copy">
+            <p class="project-type">{project.type}</p>
+            <h3>{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+            <ul aria-label={`${project.title} technologies`}>
+              {project.technologies.map((technology) => (
+                <li>{technology}</li>
+              ))}
+            </ul>
+            <a href={project.source} target="_blank" rel="noopener noreferrer">
+              View source <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <a
+            class="project-image"
+            href={project.source}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${project.title} source on GitHub`}
+          >
+            <img
+              src={project.image}
+              alt={`${project.title} project interface`}
+              loading="lazy"
+            />
+          </a>
+        </article>
+      ))
+    }
+  </div>
+
+  <a
+    class="all-work"
+    href="https://github.com/runejac"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    More experiments live on GitHub <span aria-hidden="true">↗</span>
+  </a>
+</section>
+
+<style>
+  .projects {
+    padding-block: clamp(6rem, 12vw, 11rem);
+  }
+
+  .section-heading {
+    display: grid;
+    margin-bottom: clamp(3.5rem, 7vw, 6rem);
+    gap: 1.5rem;
+  }
+
+  .section-heading h2 {
+    max-width: 10ch;
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7vw, 6.7rem);
+    font-weight: 500;
+    letter-spacing: -0.055em;
+    line-height: 0.94;
+  }
+
+  .section-heading > p:last-child {
+    max-width: 34rem;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+
+  .project {
+    display: grid;
+    padding-block: clamp(2rem, 5vw, 4.5rem);
+    border-top: 1px solid var(--line);
+    gap: 1.5rem;
+  }
+
+  .project:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .project-number,
+  .project-type,
+  .project li {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .project-number,
+  .project-type {
+    color: var(--muted);
+  }
+
+  .project-copy h3 {
+    margin-top: 0.45rem;
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 520;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .project-description {
+    max-width: 32rem;
+    margin-top: 1.25rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  .project ul {
+    display: flex;
+    margin-top: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .project li {
+    padding: 0.38rem 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+
+  .project-copy > a,
+  .all-work {
+    display: inline-block;
+    margin-top: 1.75rem;
+    font-weight: 700;
+    text-decoration-line: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35rem;
+  }
+
+  .project-image {
+    position: relative;
+    min-height: 17rem;
+    overflow: hidden;
+    border-radius: 0.9rem;
+    background: var(--paper-deep);
+  }
+
+  .project-image::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba(22, 23, 20, 0.06);
+    content: '';
+    pointer-events: none;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms var(--ease);
+  }
+
+  .project-image:hover img {
+    transform: scale(1.025);
+  }
+
+  .all-work {
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .section-heading {
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: end;
+    }
+
+    .section-heading .eyebrow {
+      grid-column: 1 / -1;
+    }
+
+    .project {
+      grid-template-columns: 3rem minmax(16rem, 0.8fr) minmax(22rem, 1.2fr);
+      align-items: center;
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .project-image {
+      aspect-ratio: 16 / 10;
+      min-height: 0;
+    }
+  }
+</style>
