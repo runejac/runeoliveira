@@ -1,174 +1,41 @@
 <footer class="site-footer">
-  <div class="footer-inner section-shell">
-    <div class="footer-index">
-      <span>03 / Contact</span>
-      <span>Signal open</span>
-    </div>
-
-    <div class="footer-callout">
-      <p class="eyebrow">One clear next step</p>
-      <h2>Got a useful<br />problem?</h2>
-      <a href="mailto:runedanielj@gmail.com?subject=Hello%20Rune">
-        <span>Tell me about it</span><i aria-hidden="true">↗</i>
-      </a>
-    </div>
-
-    <div class="footer-meta">
-      <p>© {new Date().getFullYear()} Rune Oliveira / Oslo</p>
-      <nav aria-label="Social links">
-        <a
-          href="https://github.com/runejac"
-          target="_blank"
-          rel="noopener noreferrer">GitHub ↗</a
-        >
-        <a
-          href="https://www.linkedin.com/in/rune-daniel-jacobsen-oliveira/"
-          target="_blank"
-          rel="noopener noreferrer">LinkedIn ↗</a
-        >
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-          >Résumé ↗</a
-        >
-        <a href="#top">Top ↑</a>
-      </nav>
-    </div>
-  </div>
+  <h2>Get in touch</h2>
+  <a class="email" href="mailto:runedanielj@gmail.com">runedanielj@gmail.com</a>
+  <nav aria-label="Profiles and resume">
+    <a href="https://github.com/runejac">GitHub</a>
+    <a href="https://www.linkedin.com/in/rune-daniel-jacobsen-oliveira/"
+      >LinkedIn</a
+    >
+    <a href="/resume.pdf">Resume <span class="file-type">(PDF)</span></a>
+  </nav>
+  <p class="copyright">&copy; {new Date().getFullYear()} Rune Oliveira</p>
 </footer>
 
 <style>
   .site-footer {
-    position: relative;
-    overflow: hidden;
-    padding-block: clamp(5rem, 11vw, 9rem) 2rem;
-    background: var(--night);
-  }
-
-  .site-footer::before {
-    position: absolute;
-    right: -12rem;
-    bottom: -20rem;
-    width: min(60vw, 52rem);
-    aspect-ratio: 1;
-    border: 1px solid rgba(142, 125, 255, 0.25);
-    border-radius: 50%;
-    box-shadow:
-      0 0 0 4rem rgba(142, 125, 255, 0.025),
-      0 0 0 8rem rgba(142, 125, 255, 0.018);
-    content: '';
-  }
-
-  .footer-inner {
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-index {
-    display: flex;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--line);
-    color: var(--muted);
-    justify-content: space-between;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .footer-index span:last-child {
-    color: var(--signal);
-  }
-
-  .footer-callout {
-    padding-block: clamp(4rem, 9vw, 8rem);
-  }
-
-  .footer-callout .eyebrow {
-    display: none;
-  }
-
-  .footer-callout h2 {
-    margin-top: 0;
-    font-family: var(--display);
-    font-size: clamp(4rem, 10vw, 9rem);
-    font-weight: 300;
-    letter-spacing: -0.075em;
-    line-height: 0.82;
-  }
-
-  .footer-callout > a {
-    display: flex;
-    width: max-content;
-    margin-top: clamp(2.5rem, 5vw, 4rem);
-    padding: 0.35rem 0.35rem 0.35rem 1.25rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    align-items: center;
-    gap: 1rem;
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition:
-      color 180ms ease,
-      border-color 180ms ease;
-  }
-
-  .footer-callout > a i {
-    display: grid;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    color: var(--night);
-    background: var(--signal);
-    place-items: center;
-    font-style: normal;
-    transition: transform 220ms var(--ease);
-  }
-
-  .footer-callout > a:hover {
-    border-color: var(--signal);
-  }
-
-  .footer-callout > a:hover i {
-    transform: rotate(45deg);
-  }
-
-  .footer-meta {
-    display: flex;
-    padding-top: 1.5rem;
+    margin-top: 3rem;
+    padding-block: 2rem;
     border-top: 1px solid var(--line);
-    color: var(--muted);
-    flex-direction: column;
-    gap: 1.25rem;
   }
-
-  .footer-meta p,
-  .footer-meta a {
-    font-family: var(--mono);
-    font-size: 0.61rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .email {
+    overflow-wrap: anywhere;
   }
-
-  .footer-meta nav {
+  nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.25rem;
   }
-
-  .footer-meta a {
-    text-decoration: none;
+  nav a {
+    padding-block: 0.25rem;
   }
-
-  .footer-meta a:hover {
-    color: var(--signal);
+  .file-type {
+    font-size: 0.8125rem;
   }
-
-  @media (min-width: 48rem) {
-    .footer-meta {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  .copyright {
+    margin-top: 3rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.6875rem;
   }
 </style>

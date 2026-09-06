@@ -1,186 +1,34 @@
 <header class="site-header">
-  <div class="header-inner">
-    <a class="wordmark" href="#top" aria-label="Rune Oliveira, back to top">
-      <span>RO</span><i aria-hidden="true"></i><small>26</small>
-    </a>
-
-    <nav aria-label="Primary navigation">
-      <a href="#approach"><span>01</span> Method</a>
-      <a href="#about"><span>02</span> Story</a>
-      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-        <span>03</span> Résumé ↗
-      </a>
-    </nav>
-
-    <a
-      class="contact-link"
-      href="mailto:runedanielj@gmail.com?subject=Hello%20Rune"
-    >
-      <span>Start a conversation</span><i aria-hidden="true">↗</i>
-    </a>
-  </div>
+  <a href="/" aria-label="Rune Oliveira home">runeoliveira.com</a>
+  <span>Oslo, Norway</span>
 </header>
 
 <style>
   .site-header {
-    position: fixed;
-    z-index: 30;
-    top: 0.8rem;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-  }
-
-  .header-inner {
     display: flex;
-    width: var(--page);
-    min-height: 4.2rem;
-    margin-inline: auto;
-    padding: 0.5rem 0.6rem 0.5rem 0.8rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    background: rgba(8, 11, 13, 0.75);
-    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(18px);
-    pointer-events: auto;
-  }
-
-  .wordmark {
-    display: flex;
-    min-width: 5rem;
-    min-height: 3rem;
-    padding-inline: 0.45rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.28rem;
-    font-family: var(--mono);
-    text-decoration: none;
-  }
-
-  .wordmark span {
-    color: var(--light);
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-  }
-
-  .wordmark i {
-    position: relative;
-    display: block;
-    width: 0.22rem;
-    height: 0.92rem;
-    flex: 0 0 auto;
-  }
-
-  .wordmark i::before,
-  .wordmark i::after {
-    position: absolute;
-    left: 50%;
-    background: var(--signal);
-    box-shadow: 0 0 0.7rem var(--signal);
-    content: '';
-    transform: translateX(-50%);
-  }
-
-  .wordmark i::before {
-    top: 0;
-    width: 0.16rem;
-    height: 0.59rem;
-    border-radius: 999px;
-  }
-
-  .wordmark i::after {
-    bottom: 0;
-    width: 0.2rem;
-    height: 0.2rem;
-    border-radius: 50%;
-  }
-
-  .wordmark small {
-    display: none;
-  }
-
-  nav {
-    display: none;
-    align-items: center;
-    gap: clamp(0.25rem, 0.8vw, 0.75rem);
-  }
-
-  nav a {
-    display: flex;
-    min-height: 3rem;
-    padding-inline: clamp(0.85rem, 1.5vw, 1.25rem);
-    border-radius: 999px;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-bottom: 4.5rem;
+    padding-block: 2.5rem 1.25rem;
+    border-bottom: 1px solid var(--line);
     color: var(--muted);
-    align-items: center;
-    font-size: 0.78rem;
-    text-decoration: none;
-    transition:
-      color 180ms ease,
-      background 180ms ease;
-  }
-
-  nav a span {
-    margin-right: 0.3rem;
-    color: rgba(184, 255, 88, 0.56);
     font-family: var(--mono);
-    font-size: 0.55rem;
+    font-size: 0.75rem;
   }
-
-  nav a:hover {
-    color: var(--light);
-    background: rgba(237, 241, 232, 0.08);
-  }
-
-  .contact-link {
-    display: flex;
-    min-height: 3.1rem;
-    padding: 0.3rem 0.3rem 0.3rem 1.2rem;
-    border-radius: 999px;
-    color: var(--night);
-    background: var(--signal);
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 0.78rem;
-    font-weight: 700;
+  a {
+    color: var(--text);
     text-decoration: none;
-    transition: transform 180ms var(--ease);
   }
-
-  .contact-link i {
-    display: grid;
-    width: 2.45rem;
-    height: 2.45rem;
-    border-radius: 50%;
-    color: var(--light);
-    background: var(--night);
-    place-items: center;
-    font-style: normal;
+  a:hover {
+    color: var(--link);
+    text-decoration: underline;
   }
-
-  .contact-link:hover {
-    transform: translateY(-2px);
-  }
-
-  @media (max-width: 29rem) {
-    .contact-link span {
-      display: none;
-    }
-
-    .contact-link {
-      padding-left: 0.3rem;
-    }
-  }
-
-  @media (min-width: 48rem) {
+  @media (max-width: 40rem) {
     .site-header {
-      top: 1.2rem;
-    }
-
-    nav {
-      display: flex;
+      margin-bottom: 3rem;
+      padding-top: 1.5rem;
     }
   }
 </style>

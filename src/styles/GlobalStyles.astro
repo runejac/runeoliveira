@@ -1,160 +1,68 @@
 <style is:global>
-  @font-face {
-    font-family: 'Atkinson';
-    src: url('/fonts/atkinson/atkinson-regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Atkinson';
-    src: url('/fonts/atkinson/atkinson-bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Satoshi';
-    src: url('/fonts/Satoshi/Satoshi-Light.woff2') format('woff2');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Intel One Mono';
-    src: url('/fonts/intel_one_mono/IntelOneMono-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-
   :root {
-    --night: #080b0d;
-    --night-soft: #0e1317;
-    --panel: #12181d;
-    --light: #edf1e8;
-    --fog: #d9ddd4;
-    --muted: #909a93;
-    --line: rgba(237, 241, 232, 0.16);
-    --signal: #b8ff58;
-    --signal-soft: rgba(184, 255, 88, 0.14);
-    --violet: #8e7dff;
-    --display: 'Satoshi', 'Atkinson', system-ui, sans-serif;
-    --sans: 'Atkinson', system-ui, sans-serif;
-    --mono: 'Intel One Mono', ui-monospace, monospace;
-    --page: min(100% - 2rem, 92rem);
-    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+    color-scheme: light;
+    --background: #faf9f6;
+    --text: #292b29;
+    --body: #50534e;
+    --muted: #6d7069;
+    --line: #dedfd8;
+    --link: #355e79;
+    --mono: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, monospace;
   }
-
   * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
-
   html {
-    scroll-behavior: smooth;
-    background: var(--night);
+    background: var(--background);
   }
-
   body {
-    min-width: 320px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: var(--light);
-    background: var(--night);
-    font-family: var(--sans);
-    font-size: 1rem;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  ::selection {
-    color: var(--night);
-    background: var(--signal);
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  button,
-  a {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--signal);
-    outline-offset: 4px;
-  }
-
-  .skip-link {
-    position: fixed;
-    z-index: 100;
-    top: 0.75rem;
-    left: 0.75rem;
-    padding: 0.65rem 0.9rem;
-    color: var(--night);
-    background: var(--signal);
-    transform: translateY(-160%);
-    transition: transform 180ms ease;
-  }
-
-  .skip-link:focus {
-    transform: translateY(0);
-  }
-
-  .section-shell {
-    width: var(--page);
+    width: min(100% - 3rem, 40rem);
     margin-inline: auto;
+    color: var(--body);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
   }
-
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 0.67rem;
-    letter-spacing: 0.09em;
-    line-height: 1.2;
-    text-transform: uppercase;
+  h2 {
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
   }
-
-  .eyebrow::before {
-    width: 1.7rem;
-    height: 1px;
-    background: currentColor;
-    content: '';
+  section + section {
+    margin-top: 2.5rem;
   }
-
-  @media (min-width: 48rem) {
-    :root {
-      --page: min(100% - 5rem, 92rem);
-    }
+  p + p {
+    margin-top: 1rem;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-      scroll-behavior: auto !important;
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  a {
+    color: var(--link);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+  a:hover {
+    color: var(--text);
+  }
+  ::selection {
+    color: var(--text);
+    background: #e1e7df;
+  }
+  :focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 5px;
+  }
+  .skip-link {
+    position: absolute;
+    top: -5rem;
+    left: 1rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--background);
+  }
+  .skip-link:focus {
+    top: 0.5rem;
   }
 </style>

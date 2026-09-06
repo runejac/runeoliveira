@@ -1,333 +1,59 @@
-<section id="about" class="story">
-  <div class="story-inner section-shell">
-    <header class="story-heading">
-      <div class="section-index">
-        <span>02</span>
-        <span>Story</span>
-      </div>
-      <div>
-        <p class="eyebrow">The route here</p>
-        <h2>I took the long way<br />into software.</h2>
-      </div>
-    </header>
-
-    <div class="story-grid">
-      <ol class="timeline" aria-label="Career journey">
-        <li>
-          <span>Early signal</span>
-          <strong>Building computers</strong>
-        </li>
-        <li>
-          <span>Hardware years</span>
-          <strong>E-commerce & procurement</strong>
-        </li>
-        <li>
-          <span>Age 29</span>
-          <strong>A deliberate change</strong>
-        </li>
-        <li>
-          <span>Now</span>
-          <strong>Software & media</strong>
-        </li>
-      </ol>
-
-      <div class="story-copy">
-        <p class="lead">
-          I did not grow up knowing I would become a software engineer. I grew
-          into it by following the same curiosity from one system to the next.
-        </p>
-        <p>
-          Building computers led to hardware roles in e-commerce and procurement
-          for a leading Scandinavian retailer. At 29, I changed direction and
-          earned a bachelor’s degree in information technology, specializing in
-          frontend and mobile development.
-        </p>
-        <p>
-          That route still shapes how I work: understand the parts, respect the
-          person using them, and stay curious about what happens behind the
-          interface.
-        </p>
-        <a
-          href="https://www.kristiania.no/studier/bachelor/informasjonsteknologi-frontend-og-mobilutvikling/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Field of study <span aria-hidden="true">↗</span></a
-        >
-      </div>
+<section aria-labelledby="about-heading">
+  <div class="about-layout">
+    <div>
+      <h2 id="about-heading">A bit about me</h2>
+      <p>
+        I started out building computers, then worked in e-commerce and hardware
+        procurement. At 29, I went back to school to study IT, specialising in
+        frontend and mobile development.
+      </p>
+      <p>
+        My day-to-day work takes me between web interfaces, backend services,
+        and mobile apps.
+      </p>
     </div>
-
-    <aside class="off-grid">
-      <p>Offline inputs</p>
-      <ul>
-        <li tabindex="0">
-          <span class="input-label">Coastline / fly fishing</span>
-          <small
-            >Slow mornings, salt air, and the satisfying puzzle of reading the
-            water.</small
-          >
-        </li>
-        <li tabindex="0">
-          <span class="input-label">Mats / jiu-jitsu</span>
-          <small
-            >A physical reset built on patience, technique, and solving problems
-            under pressure.</small
-          >
-        </li>
-        <li tabindex="0">
-          <span class="input-label">Tabletop / board games</span>
-          <small
-            >Strategy, systems, and a good reason to gather around the same
-            table.</small
-          >
-        </li>
-        <li tabindex="0">
-          <span class="input-label">Screen / video games</span>
-          <small
-            >Interactive worlds, playful systems, and inspiration for how
-            experiences can feel.</small
-          >
-        </li>
-        <li tabindex="0">
-          <span class="input-label">Mountains / alpine skiing</span>
-          <small
-            >Speed, focus, and clean mountain air when Norway turns cold.</small
-          >
-        </li>
-      </ul>
-    </aside>
+    <img
+      class="fishing-photo"
+      src="/images/flyfishing.jpg"
+      alt="Holding a fly rod over clear coastal water."
+      width="720"
+      height="1280"
+      decoding="async"
+    />
   </div>
 </section>
 
 <style>
-  .story {
-    padding-block: clamp(7rem, 14vw, 12rem);
-    color: var(--night);
-    background: var(--fog);
-  }
-
-  .story-heading {
+  .about-layout {
     display: grid;
-    margin-bottom: clamp(4rem, 9vw, 8rem);
-    gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr) 10rem;
+    align-items: start;
+    gap: 2rem;
   }
 
-  .section-index {
-    display: flex;
-    color: rgba(8, 11, 13, 0.55);
-    flex-direction: column;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .section-index span:first-child,
-  .story .eyebrow {
-    color: #4b3fd1;
-  }
-
-  .story-heading h2 {
-    margin-top: 1.5rem;
-    font-family: var(--display);
-    font-size: clamp(3.5rem, 8vw, 7.7rem);
-    font-weight: 300;
-    letter-spacing: -0.067em;
-    line-height: 0.87;
-  }
-
-  .story-grid {
-    display: grid;
-    border-top: 1px solid rgba(8, 11, 13, 0.2);
-    gap: 3rem;
-  }
-
-  .timeline {
-    list-style: none;
-  }
-
-  .timeline li {
-    display: grid;
-    padding-block: 1.2rem;
-    border-bottom: 1px solid rgba(8, 11, 13, 0.18);
-    grid-template-columns: 7rem 1fr;
-    gap: 1rem;
-  }
-
-  .timeline span,
-  .off-grid > p,
-  .off-grid .input-label {
-    font-family: var(--mono);
-    font-size: 0.64rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .timeline span {
-    color: rgba(8, 11, 13, 0.5);
-  }
-
-  .timeline strong {
-    font-size: 0.95rem;
-  }
-
-  .story-copy {
-    padding-top: 1.2rem;
-  }
-
-  .story-copy p {
-    max-width: 38rem;
-    margin-bottom: 1.2rem;
-    color: rgba(8, 11, 13, 0.65);
-    font-size: 1.05rem;
-  }
-
-  .story-copy .lead {
-    color: var(--night);
-    font-family: var(--display);
-    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    font-weight: 300;
-    letter-spacing: -0.045em;
-    line-height: 1.08;
-  }
-
-  .story-copy a {
-    display: inline-block;
-    margin-top: 1rem;
-    padding-bottom: 0.25rem;
-    border-bottom: 2px solid #4b3fd1;
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    letter-spacing: 0.07em;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  .off-grid {
-    display: grid;
-    margin-top: clamp(4rem, 8vw, 7rem);
-    padding: 1.25rem 0;
-    border-top: 1px solid rgba(8, 11, 13, 0.2);
-    border-bottom: 1px solid rgba(8, 11, 13, 0.2);
-    gap: 1.5rem;
-  }
-
-  .off-grid > p {
-    color: #4b3fd1;
-  }
-
-  .off-grid ul {
-    display: grid;
-    list-style: none;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 0.75rem;
-  }
-
-  .off-grid li {
-    position: relative;
-    min-height: 9.5rem;
-    overflow: hidden;
-    padding: 1rem;
-    border: 1px solid rgba(8, 11, 13, 0.24);
-    border-radius: 0.8rem;
-    cursor: default;
-    transition:
-      color 220ms ease,
-      background 220ms ease,
-      border-color 220ms ease,
-      transform 220ms var(--ease),
-      box-shadow 220ms ease;
-  }
-
-  .off-grid li::after {
-    position: absolute;
-    right: -3.25rem;
-    bottom: -3.25rem;
-    width: 7rem;
-    height: 7rem;
-    border: 1px solid rgba(75, 63, 209, 0.28);
-    border-radius: 50%;
-    content: '';
-    transition: transform 400ms var(--ease);
-  }
-
-  .input-label,
-  .off-grid small {
-    position: relative;
-    z-index: 1;
+  .fishing-photo {
     display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 3px;
   }
 
-  .off-grid small {
-    max-width: 18rem;
-    margin-top: 2rem;
-    color: rgba(237, 241, 232, 0.68);
-    font-family: var(--sans);
-    font-size: 0.86rem;
-    line-height: 1.35;
-    opacity: 0;
-    transform: translateY(0.5rem);
-    transition:
-      opacity 220ms ease,
-      transform 220ms var(--ease);
-  }
-
-  .off-grid li:hover,
-  .off-grid li:focus {
-    border-color: var(--night);
-    color: var(--light);
-    background: var(--night);
-    box-shadow: 0 0.8rem 2rem rgba(8, 11, 13, 0.14);
-    transform: translateY(-3px);
-  }
-
-  .off-grid li:hover::after,
-  .off-grid li:focus::after {
-    transform: scale(1.35);
-  }
-
-  .off-grid li:hover .input-label,
-  .off-grid li:focus .input-label {
-    color: var(--signal);
-  }
-
-  .off-grid li:hover small,
-  .off-grid li:focus small {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .off-grid li:focus-visible {
-    outline-color: #4b3fd1;
-  }
-
-  @media (hover: none) {
-    .off-grid li {
-      min-height: auto;
-      color: var(--night);
-      background: rgba(255, 255, 255, 0.2);
+  @media (max-width: 36rem) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    .off-grid small {
-      margin-top: 1rem;
-      color: rgba(8, 11, 13, 0.62);
-      opacity: 1;
-      transform: none;
-    }
-  }
-
-  @media (min-width: 56rem) {
-    .story-heading {
-      grid-template-columns: 5rem 1fr;
-    }
-
-    .story-grid {
-      grid-template-columns: minmax(20rem, 0.75fr) minmax(24rem, 1.25fr);
-      gap: clamp(3rem, 8vw, 8rem);
-    }
-
-    .off-grid {
-      grid-template-columns: 10rem 1fr;
-      align-items: center;
+    .fishing-photo {
+      max-width: 12rem;
     }
   }
 </style>
+
+<section aria-labelledby="outside-heading">
+  <h2 id="outside-heading">Outside of work</h2>
+  <p>
+    Fly fishing, jiu-jitsu, board games, video games, and alpine skiing. Depends
+    on the weather and who's around.
+  </p>
+</section>
